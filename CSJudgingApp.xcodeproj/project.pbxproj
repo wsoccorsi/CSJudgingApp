@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A500E61822431830007F65E0 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61722431830007F65E0 /* ProjectsViewController.swift */; };
+		A500E61A2243186E007F65E0 /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E6192243186E007F65E0 /* ProjectStore.swift */; };
+		A500E61C2243187D007F65E0 /* WebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61B2243187D007F65E0 /* WebAPI.swift */; };
+		A500E61E2243189C007F65E0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61D2243189C007F65E0 /* Project.swift */; };
 		DBCB0BC4223EE24100484AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB0BC3223EE24100484AE4 /* AppDelegate.swift */; };
 		DBCB0BC6223EE24100484AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB0BC5223EE24100484AE4 /* ViewController.swift */; };
 		DBCB0BC9223EE24100484AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB0BC7223EE24100484AE4 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A500E61722431830007F65E0 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		A500E6192243186E007F65E0 /* ProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStore.swift; sourceTree = "<group>"; };
+		A500E61B2243187D007F65E0 /* WebAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAPI.swift; sourceTree = "<group>"; };
+		A500E61D2243189C007F65E0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		DBCB0BC0223EE24100484AE4 /* CSJudgingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSJudgingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCB0BC3223EE24100484AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCB0BC5223EE24100484AE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +111,10 @@
 				DBCB0BCA223EE24200484AE4 /* Assets.xcassets */,
 				DBCB0BCC223EE24200484AE4 /* LaunchScreen.storyboard */,
 				DBCB0BCF223EE24200484AE4 /* Info.plist */,
+				A500E61722431830007F65E0 /* ProjectsViewController.swift */,
+				A500E6192243186E007F65E0 /* ProjectStore.swift */,
+				A500E61B2243187D007F65E0 /* WebAPI.swift */,
+				A500E61D2243189C007F65E0 /* Project.swift */,
 			);
 			path = CSJudgingApp;
 			sourceTree = "<group>";
@@ -256,8 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A500E61C2243187D007F65E0 /* WebAPI.swift in Sources */,
+				A500E61822431830007F65E0 /* ProjectsViewController.swift in Sources */,
+				A500E61A2243186E007F65E0 /* ProjectStore.swift in Sources */,
 				DBCB0BC6223EE24100484AE4 /* ViewController.swift in Sources */,
 				DBCB0BC4223EE24100484AE4 /* AppDelegate.swift in Sources */,
+				A500E61E2243189C007F65E0 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
