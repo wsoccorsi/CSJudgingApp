@@ -49,7 +49,7 @@ class ProjectStore {
         
         let url = WebAPI.allProjectsURL
         
-        let apiKey = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9jcy1qdWRnZS53My51dm0uZWR1XC9hcHAiLCJpYXQiOjE1NTI3NzIwNTQsIm5iZiI6MTU1Mjc3MjA1NCwiZXhwIjoxNTUzMzc2ODU0LCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxMCJ9fX0.rymWAoidLlAR3tkfT9GRGQe9OAHjCW54G0Ax2g5OnJ0"
+        let apiKey = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9jcy1qdWRnZS53My51dm0uZWR1XC9hcHAiLCJpYXQiOjE1NTM2MTQ1MzAsIm5iZiI6MTU1MzYxNDUzMCwiZXhwIjoxNTU0MjE5MzMwLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxMCJ9fX0.tXU9xChEZdCo9gT5c0BdWN_Ufen0JnyV2kxMxIszpYc"
         
         var request = URLRequest(url: url)
         
