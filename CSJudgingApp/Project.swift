@@ -4,18 +4,18 @@ class Project: NSObject {
     
     var title: String
     var id: Int
-    //    var desc: String
-    //    var year: Int
-    //    var image_url: String
-    //    var is_judge: Bool
-    //    var has_judged: Bool
-    //    var category: String
-    //    var color: String
-    //    var students: [String]
-    //    var boothNumber: Int
-    //    var boothSide: String
-    //    var courses: [String]
-    //    var time: String
+//    var desc: String
+//    var year: Int
+//    var image_url: String
+//    var is_judge: Bool
+//    var has_judged: Bool
+//    var category: String
+//    var color: String
+//    var students: [String]
+//    var boothNumber: Int
+//    var boothSide: String
+//    var courses: [String]
+//    var time: String
     
     init(title: String, id: Int) {
         

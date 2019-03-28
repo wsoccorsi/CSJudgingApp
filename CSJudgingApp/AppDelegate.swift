@@ -20,16 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let TabBarController = window!.rootViewController as! UITabBarController
         
+        TabBarController.tabBar.backgroundColor = UIColor.red
+        
         let ViewControllers: Array = TabBarController.viewControllers!
         
         //Accessing the ProjectsViewController (1st Element in the TabBarController)
-        let ProjectsController = ViewControllers[0] as! ProjectsViewController
+        let NavigationController = ViewControllers[0] as! UINavigationController
+        let ProjectsController = NavigationController.topViewController as! ProjectsViewController
         
         ProjectsController.ProjectStore = projectStore
         
+//        var View: UIView
+//        View = UIView(frame: CGRect(x: 100, y: 100, width: 50, height: 50))
+//        View.backgroundColor = UIColor.red
+//        window?.addSubview(View)
+        
         return true
     }
-
+ 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
