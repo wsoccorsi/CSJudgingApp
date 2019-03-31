@@ -53,9 +53,18 @@ struct WebAPI {
             for Proj in ProjectList
             {
                 let Name = Proj["name"]! as? String
+                let Desc = Proj["description"]! as? String
+                let Cat = Proj["category"]! as? String
                 let Id = Proj["id"]! as? Int
+                let Booth = Proj["boothNumber"]! as? String
+                let Course = Proj["courses"]! as? String
+                let Time = Proj["time"]! as? String
+
+
                 
-                let NewProject = Project(title: Name!, id: Id!)
+                let NewProject = Project(title: Name!, id: Id!, desc: Desc!, category: Cat!,
+                                         booth: Booth!, time: Time!)
+                                        
                 
                 ProjectsReturn.append(NewProject)
             }

@@ -10,8 +10,11 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        nameLabel.numberOfLines=0
+        descLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         nameLabel.text = Project.title
-        descLabel.text = "Testing"
+        descLabel.text = Project.desc
+        
         
     }
     

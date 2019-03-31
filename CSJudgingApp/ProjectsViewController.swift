@@ -51,6 +51,8 @@ class ProjectsViewController: UITableViewController {
         return ProjectStore.Projects.count
     }
     
+
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
@@ -59,10 +61,11 @@ class ProjectsViewController: UITableViewController {
         
         let project = ProjectStore.Projects[indexPath.row]
         
+   
         cell.nameLabel.text = project.title
         cell.nameLabel.numberOfLines = 0
         cell.nameLabel.lineBreakMode = .byWordWrapping
-        cell.catLabel.text = project.title
+        cell.catLabel.text = project.category
         
         return cell
     }

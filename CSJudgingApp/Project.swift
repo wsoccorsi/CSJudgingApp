@@ -4,23 +4,30 @@ class Project: NSObject {
     
     var title: String
     var id: Int
-//    var desc: String
+    var desc: String
+    var category: String
+    var boothNumber: String
+    var time: String
+
 //    var year: Int
 //    var image_url: String
 //    var is_judge: Bool
 //    var has_judged: Bool
-//    var category: String
 //    var color: String
 //    var students: [String]
-//    var boothNumber: Int
 //    var boothSide: String
-//    var courses: [String]
-//    var time: String
+    //var courses: [String]
     
-    init(title: String, id: Int) {
+    init(title: String, id: Int, desc: String, category: String, booth: String, time: String){
+         //boothNumber: Int, time: String) {
         
         self.title = title
         self.id = id
+        self.desc = desc
+        self.category = category
+        self.boothNumber = booth
+        //self.courses = [courses]
+        self.time = time
         
         super.init()
     }
