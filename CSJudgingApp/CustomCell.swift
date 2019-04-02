@@ -6,4 +6,6 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet var catLabel: UILabel!
     
+    
+   
 }
