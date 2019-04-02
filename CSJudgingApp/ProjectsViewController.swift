@@ -101,7 +101,7 @@ class ProjectsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             
-        case "showProject"?:
+        case "showDetails"?:
             
             if let row = tableView.indexPathForSelectedRow?.row {
                 
