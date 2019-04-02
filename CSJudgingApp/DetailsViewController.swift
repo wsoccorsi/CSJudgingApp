@@ -12,7 +12,7 @@ class DetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         nameLabel.numberOfLines=0
         descLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        nameLabel.text = Project.title
+        nameLabel.text = Project.name
         descLabel.text = Project.desc
         
         

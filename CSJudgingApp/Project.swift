@@ -2,10 +2,10 @@ import Foundation
 
 class Project: NSObject {
     
-    var title: String
+    var name: String
     var id: Int
     var desc: String
-    var category: String
+    var cat: String
     var boothNumber: String
     var time: String
 
@@ -18,13 +18,13 @@ class Project: NSObject {
 //    var boothSide: String
     //var courses: [String]
     
-    init(title: String, id: Int, desc: String, category: String, booth: String, time: String){
+    init(name: String, id: Int, desc: String, cat: String, booth: String, time: String){
          //boothNumber: Int, time: String) {
         
-        self.title = title
+        self.name = name
         self.id = id
         self.desc = desc
-        self.category = category
+        self.cat = cat
         self.boothNumber = booth
         //self.courses = [courses]
         self.time = time
