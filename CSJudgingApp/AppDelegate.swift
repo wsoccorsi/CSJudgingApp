@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let TabBarController = window!.rootViewController as! UITabBarController
         
-        TabBarController.tabBar.backgroundColor = UIColor.red
-        
         let ViewControllers: Array = TabBarController.viewControllers!
         
         //Accessing the ProjectsViewController (1st Element in the TabBarController)
@@ -30,12 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProjectsController.ProjectStore = projectStore
         
-//        var View: UIView
-//        View = UIView(frame: CGRect(x: 100, y: 100, width: 50, height: 50))
-//        View.backgroundColor = UIColor.red
-//        window?.addSubview(View)
-        
         return true
+        
     }
  
     func applicationWillResignActive(_ application: UIApplication) {
