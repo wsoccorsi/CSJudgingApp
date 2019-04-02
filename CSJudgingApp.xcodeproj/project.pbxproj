@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A3C958D224D1763004AE60B /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C958C224D1763004AE60B /* QRCodeViewController.swift */; };
+		7A3C958F224D17BC004AE60B /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3C958E224D17BC004AE60B /* QRScannerController.swift */; };
 		A500E61822431830007F65E0 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61722431830007F65E0 /* ProjectsViewController.swift */; };
 		A500E61A2243186E007F65E0 /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E6192243186E007F65E0 /* ProjectStore.swift */; };
 		A500E61C2243187D007F65E0 /* WebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61B2243187D007F65E0 /* WebAPI.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A3C958C224D1763004AE60B /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		7A3C958E224D17BC004AE60B /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		A500E61722431830007F65E0 /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		A500E6192243186E007F65E0 /* ProjectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStore.swift; sourceTree = "<group>"; };
 		A500E61B2243187D007F65E0 /* WebAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAPI.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				A500E61B2243187D007F65E0 /* WebAPI.swift */,
 				A500E61D2243189C007F65E0 /* Project.swift */,
 				A5BDC952224C3B3F0028FC45 /* CustomCell.swift */,
+				7A3C958C224D1763004AE60B /* QRCodeViewController.swift */,
+				7A3C958E224D17BC004AE60B /* QRScannerController.swift */,
 			);
 			path = CSJudgingApp;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				DBCB0BC6223EE24100484AE4 /* ViewController.swift in Sources */,
 				A565CF42224A856500191742 /* DetailsViewController.swift in Sources */,
 				DBCB0BC4223EE24100484AE4 /* AppDelegate.swift in Sources */,
+				7A3C958D224D1763004AE60B /* QRCodeViewController.swift in Sources */,
+				7A3C958F224D17BC004AE60B /* QRScannerController.swift in Sources */,
 				A5BDC953224C3B3F0028FC45 /* CustomCell.swift in Sources */,
 				A500E61E2243189C007F65E0 /* Project.swift in Sources */,
 			);
@@ -457,7 +465,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3M3NJJ2V67;
 				INFOPLIST_FILE = CSJudgingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,7 +484,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3M3NJJ2V67;
 				INFOPLIST_FILE = CSJudgingApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
