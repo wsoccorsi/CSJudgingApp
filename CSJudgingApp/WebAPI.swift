@@ -118,26 +118,101 @@ class WebAPI {
         
         let url = allProjectsURL
         
-        GetBearerToken(username: Username, password: Password, completion:
-            {
-                var request = URLRequest(url: url)
-                
-                request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
-                
-                let task = self.session.dataTask(with: request, completionHandler:
+        if (BearerToken == nil)
+        {
+            GetBearerToken(username: Username, password: Password, completion:
                 {
-                    (data, response, error) -> Void in
-
-                    let result = self.ProcessRequest(data: data, error: error)
+                    var request = URLRequest(url: url)
                     
-                    OperationQueue.main.addOperation
+                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+                    
+                    let task = self.session.dataTask(with: request, completionHandler:
                     {
-
-                            completion(result)
-                    }
-                })
+                        (data, response, error) -> Void in
+                        
+                        let result = self.ProcessRequest(data: data, error: error)
+                        
+                        OperationQueue.main.addOperation
+                            {
+                                
+                                completion(result)
+                        }
+                    })
+                    
+                    task.resume()
+            })
+        }
+        else
+        {
+            var request = URLRequest(url: url)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
                 
-                task.resume()
-        })
+                let result = self.ProcessRequest(data: data, error: error)
+                
+                OperationQueue.main.addOperation
+                    {
+                        
+                        completion(result)
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    
+    func FetchMyProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
+        
+        let url = myProjectsURL
+        
+        if (BearerToken == nil)
+        {
+            GetBearerToken(username: Username, password: Password, completion:
+            {
+                    var request = URLRequest(url: url)
+                
+                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+                
+                    let task = self.session.dataTask(with: request, completionHandler:
+                    {
+                        (data, response, error) -> Void in
+                        
+                        let result = self.ProcessRequest(data: data, error: error)
+                        
+                        OperationQueue.main.addOperation
+                            {
+                                
+                                completion(result)
+                        }
+                    })
+                
+                    task.resume()
+            })
+        }
+        else
+        {
+            var request = URLRequest(url: url)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
+                
+                let result = self.ProcessRequest(data: data, error: error)
+                
+                OperationQueue.main.addOperation
+                    {
+                        
+                        completion(result)
+                }
+            })
+            
+            task.resume()
+        }
     }
 }
