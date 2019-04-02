@@ -82,7 +82,6 @@ class QRScannerController: UIViewController {
         
         // Moves the access request to the front of the view
         view.bringSubviewToFront(messageLabel)
-        view.bringSubviewToFront(topbar)
         
         // QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
