@@ -1,5 +1,14 @@
 import UIKit
 
+enum Category: String {
+    case BegProg = "Beginner Programming "
+    case IntProj = "Intermediate Projects "
+    case AdvProj = "Advanced Projects "
+    case ResProj = "Research Projects "
+    case BegWebD = "Beginner Web Design "
+    case IntWebD = "Intermediate Web Design "
+}
+
 class ProjectsViewController: UITableViewController {
     
     var ProjectStore: ProjectStore!
@@ -18,12 +27,18 @@ class ProjectsViewController: UITableViewController {
         tableView.scrollIndicatorInsets = insets
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 65
+        tableView.estimatedRowHeight = 200
+        
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.separatorColor = UIColor.darkGray
         
         //======
         //==02==
         //======
-        ProjectStore.FetchAllProjectsFromWeb(completion: updateTableView)
+        //ProjectStore.FetchAllProjectsFromWeb(completion: updateTableView)
+        
+        let API = WebAPI()
+        API.FetchAllProjectsFromWeb(completion: updateTableView)
     }
     
     //======
@@ -51,21 +66,34 @@ class ProjectsViewController: UITableViewController {
         return ProjectStore.Projects.count
     }
     
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        
-        cell.backgroundColor = UIColor.gray
         
         let project = ProjectStore.Projects[indexPath.row]
         
-   
-        cell.nameLabel.text = project.title
+        let cat = String(project.cat.split(separator: "(").first!)
+        
+        var cell : CustomCell
+        
+        if(cat.contains("Advanced")) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "StarCell", for: indexPath) as! CustomCell
+        }
+        else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "NoStarCell", for: indexPath) as! CustomCell
+        }
+        
+        let CatEnum = Category(rawValue: cat)
+        let CatLabelColor = UIColorFromCat(cat: CatEnum!)
+        
+        cell.nameLabel.text = project.name
         cell.nameLabel.numberOfLines = 0
         cell.nameLabel.lineBreakMode = .byWordWrapping
-        cell.catLabel.text = project.category
+        
+        cell.catLabel.text = cat
+        cell.catLabel.backgroundColor = CatLabelColor
+        cell.catLabel.numberOfLines = 0
+        cell.catLabel.lineBreakMode = .byWordWrapping
+        
+        cell.starImage = UIImageView(image: UIImage(named: "StarIcon"))
         
         return cell
     }
