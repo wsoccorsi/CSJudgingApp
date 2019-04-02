@@ -17,10 +17,9 @@ enum TokenResult {
 class WebAPI {
     
     //=====================================================================
-    //    var Username: String? = nil
-    //    var Password: String? = nil
+    
     var Username: String? = "william.slocum@uvm.edu"
-    var Password: String? = "Smrrvjt5"
+    var Password: String? = "XqCgqAb3gFuCKze7#dYt26)F"
     
     var BearerToken: String? = nil
     
@@ -58,8 +57,6 @@ class WebAPI {
     
     private func GetBearerToken(username: String?, password: String?, completion: @escaping () -> Void) -> Void
     {
-        //cs-judge.w3.uvm.edu/jwt-auth/v1/token?Username=william.slocum@uvm.edu&Password=Smrrvjt5
-        
         var components = URLComponents(string: "http://cs-judge.w3.uvm.edu/app/wp-json/jwt-auth/v1/token")!
         var queryItems = [URLQueryItem]()
         queryItems.append(URLQueryItem(name: "username", value: username!))
@@ -69,76 +66,28 @@ class WebAPI {
         var request = URLRequest(url: components.url!)
         request.httpMethod = "POST"
         
-        print("Pre Task")
         let task = session.dataTask(with: request, completionHandler:
         {
             (data, response, error) -> Void in
             
-            print("Completion")
             let result = self.ProcessTokenRequest(data: data, error: error)
             
             OperationQueue.main.addOperation
+            {
+                switch result
                 {
-                    print("Operation")
-                    switch result
-                    {
                     case let .Success(token):
                         self.BearerToken = token
                         completion()
-                        
+                    
                     case let .Failure(error):
                         print("Error Fetching Projects: \(error)")
-                    }
+                }
             }
-            
-            //completion()
         })
         
         task.resume()
     }
-    
-    //======
-    //==07==
-    //======
-    //    func ExtractProjects(from data: Data) -> ProjectsResult {
-    //
-    //        do
-    //        {
-    //            let JSONObject = try JSONSerialization.jsonObject(with: data, options: [])
-    //
-    //            guard
-    //                let JSONDictionary = JSONObject as? [AnyHashable:Any],
-    //                let ProjectList = JSONDictionary["projects"] as? [[AnyHashable:Any]]//,
-    //                else
-    //            {
-    //                return .Failure(WebError.InvalidJSON)
-    //            }
-    //
-    //            var ProjectsReturn: [Project] = []
-    //
-    //            for Proj in ProjectList
-    //            {
-    //                let Name = Proj["name"]! as? String
-    //                let Id = Proj["id"]! as? Int
-    //                let Cat = Proj["category"]! as? String
-    //
-    //                let NewProject = Project(name: Name!, id: Id!, cat: Cat!)
-    //
-    //                ProjectsReturn.append(NewProject)
-    //            }
-    //
-    //            //======
-    //            //==08==
-    //            //======
-    //            return .Success(ProjectsReturn)
-    //        }
-    //        catch let Error
-    //        {
-    //            return .Failure(Error)
-    //        }
-    //    }
-    
-    //=====================================================================
     
     private func ProcessTokenRequest(data: Data?, error: Error?) -> TokenResult {
         
@@ -160,23 +109,14 @@ class WebAPI {
                 return .Failure(error!)
         }
         
-        //======  //======
-        //==06==  //==09==
-        //======  //======
         return ExtractProjects(from: json)
     }
     
     //=====================================================================
     
-    //======
-    //==03==
-    //======
     func FetchAllProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
         
-        //let url = WebAPI.allProjectsURL
         let url = allProjectsURL
-        
-        //        let apiKey = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9jcy1qdWRnZS53My51dm0uZWR1XC9hcHAiLCJpYXQiOjE1NTM2MTQ1MzAsIm5iZiI6MTU1MzYxNDUzMCwiZXhwIjoxNTU0MjE5MzMwLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxMCJ9fX0.tXU9xChEZdCo9gT5c0BdWN_Ufen0JnyV2kxMxIszpYc"
         
         GetBearerToken(username: Username, password: Password, completion:
             {
@@ -187,17 +127,12 @@ class WebAPI {
                 let task = self.session.dataTask(with: request, completionHandler:
                 {
                     (data, response, error) -> Void in
-                    
-                    //======
-                    //==04==
-                    //======
+
                     let result = self.ProcessRequest(data: data, error: error)
                     
                     OperationQueue.main.addOperation
-                        {
-                            //======
-                            //==10==
-                            //======
+                    {
+
                             completion(result)
                     }
                 })
