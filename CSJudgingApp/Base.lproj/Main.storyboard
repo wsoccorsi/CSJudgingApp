@@ -18,16 +18,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxe-3f-TXa">
-                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxe-3f-TXa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="20.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="RWW-mN-IFa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fxe-3f-TXa" firstAttribute="trailing" secondItem="OiS-gY-BkW" secondAttribute="trailing" id="Fc5-oJ-0lg"/>
+                            <constraint firstItem="Fxe-3f-TXa" firstAttribute="top" secondItem="OiS-gY-BkW" secondAttribute="top" id="Ojr-Mp-BzV"/>
+                            <constraint firstItem="Fxe-3f-TXa" firstAttribute="leading" secondItem="OiS-gY-BkW" secondAttribute="leading" id="tB2-pk-Mdb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OiS-gY-BkW"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="esq-oT-8c6"/>
