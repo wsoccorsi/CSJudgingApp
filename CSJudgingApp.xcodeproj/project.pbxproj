@@ -15,6 +15,9 @@
 		A500E61E2243189C007F65E0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61D2243189C007F65E0 /* Project.swift */; };
 		A565CF42224A856500191742 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565CF41224A856500191742 /* DetailsViewController.swift */; };
 		A5BDC953224C3B3F0028FC45 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDC952224C3B3F0028FC45 /* CustomCell.swift */; };
+		DBA0DF67225652C300C59F41 /* JudgingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA0DF66225652C300C59F41 /* JudgingViewController.swift */; };
+		DBA0DF69225652D500C59F41 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA0DF68225652D500C59F41 /* ColorHelper.swift */; };
+		DBA0DF6B225652DE00C59F41 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA0DF6A225652DE00C59F41 /* DataHelper.swift */; };
 		DBCB0BC4223EE24100484AE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB0BC3223EE24100484AE4 /* AppDelegate.swift */; };
 		DBCB0BC6223EE24100484AE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCB0BC5223EE24100484AE4 /* ViewController.swift */; };
 		DBCB0BC9223EE24100484AE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBCB0BC7223EE24100484AE4 /* Main.storyboard */; };
@@ -50,6 +53,9 @@
 		A500E61D2243189C007F65E0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A565CF41224A856500191742 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A5BDC952224C3B3F0028FC45 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		DBA0DF66225652C300C59F41 /* JudgingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingViewController.swift; sourceTree = "<group>"; };
+		DBA0DF68225652D500C59F41 /* ColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		DBA0DF6A225652DE00C59F41 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		DBCB0BC0223EE24100484AE4 /* CSJudgingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSJudgingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBCB0BC3223EE24100484AE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBCB0BC5223EE24100484AE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +122,9 @@
 				DBCB0BC3223EE24100484AE4 /* AppDelegate.swift */,
 				DBCB0BC5223EE24100484AE4 /* ViewController.swift */,
 				DBCB0BC7223EE24100484AE4 /* Main.storyboard */,
+				DBA0DF66225652C300C59F41 /* JudgingViewController.swift */,
+				DBA0DF6A225652DE00C59F41 /* DataHelper.swift */,
+				DBA0DF68225652D500C59F41 /* ColorHelper.swift */,
 				DBCB0BCA223EE24200484AE4 /* Assets.xcassets */,
 				DBCB0BCC223EE24200484AE4 /* LaunchScreen.storyboard */,
 				DBCB0BCF223EE24200484AE4 /* Info.plist */,
@@ -280,12 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA0DF67225652C300C59F41 /* JudgingViewController.swift in Sources */,
+				DBA0DF6B225652DE00C59F41 /* DataHelper.swift in Sources */,
 				A500E61C2243187D007F65E0 /* WebAPI.swift in Sources */,
 				A500E61822431830007F65E0 /* ProjectsViewController.swift in Sources */,
 				A500E61A2243186E007F65E0 /* ProjectStore.swift in Sources */,
 				DBCB0BC6223EE24100484AE4 /* ViewController.swift in Sources */,
 				A565CF42224A856500191742 /* DetailsViewController.swift in Sources */,
 				DBCB0BC4223EE24100484AE4 /* AppDelegate.swift in Sources */,
+				DBA0DF69225652D500C59F41 /* ColorHelper.swift in Sources */,
 				7A3C958D224D1763004AE60B /* QRCodeViewController.swift in Sources */,
 				7A3C958F224D17BC004AE60B /* QRScannerController.swift in Sources */,
 				A5BDC953224C3B3F0028FC45 /* CustomCell.swift in Sources */,
