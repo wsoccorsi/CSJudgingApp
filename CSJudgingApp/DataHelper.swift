@@ -25,8 +25,10 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             let Booth = Proj["boothNumber"] as? String
             let Time = Proj["time"] as? String
             let Student = Proj["students"] as? String
+            let Courses = Proj["courses"] as? String
+            let Side = Proj["boothSide"] as? String
             
-            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!])
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!)
             
             ProjectsReturn.append(NewProject)
         }

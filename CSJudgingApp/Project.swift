@@ -9,17 +9,17 @@ class Project: NSObject {
     var boothNumber: String
     var time: String
     var students: [String]
-
+    var courses: [String]
+    var boothSide: String
 //    var year: Int
 //    var image_url: String
 //    var is_judge: Bool
 //    var has_judged: Bool
 //    var color: String
-//    var boothSide: String
-    //var courses: [String]
+    
     
     init(name: String, id: Int, desc: String, cat: String, booth: String, time: String,
-         students: [String]){
+         students: [String], courses: [String], boothSide: String){
         
         
         self.name = name
@@ -27,9 +27,10 @@ class Project: NSObject {
         self.desc = desc
         self.cat = cat
         self.boothNumber = booth
-        //self.courses = [courses]
+        self.courses = courses
         self.time = time
         self.students = students
+        self.boothSide = boothSide
         super.init()
     }
 }

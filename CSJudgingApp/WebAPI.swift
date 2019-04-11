@@ -19,7 +19,7 @@ class WebAPI {
     //=====================================================================
     
     var Username: String? = "william.slocum@uvm.edu"
-    var Password: String? = "XqCgqAb3gFuCKze7#dYt26)F"
+    var Password: String? = "Password12345Password"
     
     var BearerToken: String? = nil
     
