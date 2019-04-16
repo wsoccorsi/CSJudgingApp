@@ -7,7 +7,7 @@ enum WebError: Error {
 enum EndPoint: String {
     case allProjects = "cs-judge/v1/projects/year/2018"
     case  myProjects = "cs-judge/v1/users/my-judging-projects/current"
-    case homePage = "cs-judge/v1/fairs/current"
+    case    homePage = "cs-judge/v1/fairs/current"
 }
 
 enum TokenResult {
@@ -33,7 +33,7 @@ class WebAPI {
     var myProjectsURL: URL {
         return CreateURL(endpoint: .myProjects, parameters: nil)
     }
-    static var homePageURL: URL{
+    var homePageURL: URL{
         return CreateURL(endpoint: .homePage, parameters: nil)
     }
     
@@ -93,6 +93,9 @@ class WebAPI {
         task.resume()
     }
     
+    //=====================================================================
+    //=====================================================================
+    
     private func ProcessTokenRequest(data: Data?, error: Error?) -> TokenResult {
         
         guard
@@ -105,6 +108,8 @@ class WebAPI {
         return ExtractToken(from: json)
     }
     
+    //=====================================================================
+    
     private func ProcessRequest(data: Data?, error: Error?) -> ProjectsResult {
         
         guard
@@ -116,6 +121,20 @@ class WebAPI {
         return ExtractProjects(from: json)
     }
     
+    //=====================================================================
+    
+    private func ProcessHomeScreenRequest(data: Data?, error: Error?) -> HomeScreenResult {
+        
+        guard
+            let json = data
+            else {
+                return .Failure(error!)
+        }
+        
+        return ExtractHomeScreen(from: json)
+    }
+    
+    //=====================================================================
     //=====================================================================
     
     func FetchAllProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
@@ -169,6 +188,8 @@ class WebAPI {
         }
     }
     
+    //=====================================================================
+    
     func FetchMyProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
         
         let url = myProjectsURL
@@ -219,39 +240,60 @@ class WebAPI {
             task.resume()
         }
     }
-    static func ExtractHomeScreen(from data: Data) -> HomeScreenStoreResult {
+    
+    //=====================================================================
+    
+    func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void) {
         
-        do
+        let url = homePageURL
+        
+        if (BearerToken == nil)
         {
-            
-            
-            let JSONObject = try JSONSerialization.jsonObject(with: data, options: [])
-            // "http://cs-judge.w3.uvm.edu/app/wp-content/uploads/2018/10/CS_Fair-25.jpg"
-            guard
-                let JSONDictionary = JSONObject as? [AnyHashable:Any],
-                
-                let id = JSONDictionary["id"] as? Int,
-                let Featured_img_url = JSONDictionary["featured_image_url"] as? String,
-                let name = JSONDictionary["name"]  as? String,
-                let Deescription = JSONDictionary["description"] as? String,
-                let year = JSONDictionary["year"] as? String,
-                let Is_current = JSONDictionary["is_current"] as? Bool,
-                let Date = JSONDictionary["date"] as? String
-                else
-            {
-                return .Failure(WebError.InvalidJSON)
-            }
-            let HomeScreenReturn = HomeScreen(id: id, name: name, deescription: Deescription, year: year, is_current: Is_current, featured_img_url: Featured_img_url, date: Date)
-            
-            
-            
-            
-            
-            return .Success(HomeScreenReturn)
+            GetBearerToken(username: Username, password: Password, completion:
+                {
+                    var request = URLRequest(url: url)
+                    
+                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+                    
+                    let task = self.session.dataTask(with: request, completionHandler:
+                    {
+                        (data, response, error) -> Void in
+                        
+                        let result = self.ProcessHomeScreenRequest(data: data, error: error)
+                        
+                        OperationQueue.main.addOperation
+                        {
+                                
+                                completion(result)
+                        }
+                    })
+                    
+                    task.resume()
+            })
         }
-        catch let Error
+        else
         {
-            return .Failure(Error)
+            var request = URLRequest(url: url)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
+                
+                let result = self.ProcessHomeScreenRequest(data: data, error: error)
+                
+                OperationQueue.main.addOperation
+                {
+                        
+                        completion(result)
+                }
+            })
+            
+            task.resume()
         }
     }
+    
+    //=====================================================================
+    
 }

@@ -16,7 +16,6 @@
 		A565CF42224A856500191742 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565CF41224A856500191742 /* DetailsViewController.swift */; };
 		A5BDC953224C3B3F0028FC45 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDC952224C3B3F0028FC45 /* CustomCell.swift */; };
 		D59745482266287A00862229 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59745472266287A00862229 /* HomeScreen.swift */; };
-		D597454A226628B000862229 /* HomeScreenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5974549226628B000862229 /* HomeScreenStore.swift */; };
 		D597454C226628D600862229 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D597454B226628D600862229 /* HomeScreenViewController.swift */; };
 		DBA0DF67225652C300C59F41 /* JudgingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA0DF66225652C300C59F41 /* JudgingViewController.swift */; };
 		DBA0DF69225652D500C59F41 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA0DF68225652D500C59F41 /* ColorHelper.swift */; };
@@ -57,7 +56,6 @@
 		A565CF41224A856500191742 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A5BDC952224C3B3F0028FC45 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D59745472266287A00862229 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		D5974549226628B000862229 /* HomeScreenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenStore.swift; sourceTree = "<group>"; };
 		D597454B226628D600862229 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		DBA0DF66225652C300C59F41 /* JudgingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgingViewController.swift; sourceTree = "<group>"; };
 		DBA0DF68225652D500C59F41 /* ColorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				7A3C958C224D1763004AE60B /* QRCodeViewController.swift */,
 				7A3C958E224D17BC004AE60B /* QRScannerController.swift */,
 				D59745472266287A00862229 /* HomeScreen.swift */,
-				D5974549226628B000862229 /* HomeScreenStore.swift */,
 				D597454B226628D600862229 /* HomeScreenViewController.swift */,
 			);
 			path = CSJudgingApp;
@@ -302,7 +299,6 @@
 				D597454C226628D600862229 /* HomeScreenViewController.swift in Sources */,
 				DBA0DF6B225652DE00C59F41 /* DataHelper.swift in Sources */,
 				D59745482266287A00862229 /* HomeScreen.swift in Sources */,
-				D597454A226628B000862229 /* HomeScreenStore.swift in Sources */,
 				A500E61C2243187D007F65E0 /* WebAPI.swift in Sources */,
 				A500E61822431830007F65E0 /* ProjectsViewController.swift in Sources */,
 				A500E61A2243186E007F65E0 /* ProjectStore.swift in Sources */,

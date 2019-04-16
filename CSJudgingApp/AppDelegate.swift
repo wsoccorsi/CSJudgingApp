@@ -16,23 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let allProjectStore = ProjectStore()
-        let myProjectStore = ProjectStore()
-        
         let TabBarController = window!.rootViewController as! UITabBarController
         
         let ViewControllers: Array = TabBarController.viewControllers!
         
-        print(ViewControllers)
+        //print(ViewControllers)
         
-        //Accessing the ProjectsViewController (1st Element in the TabBarController)
-        let AllProjNavigationController = ViewControllers[0] as! UINavigationController
+        let homeScreen = HomeScreen()
+        let HomeScreenController = ViewControllers[0] as! HomeScreenViewController
+        //let HomeScreenController = HomeNavigationController.topViewController as! HomeScreenViewController
+        HomeScreenController.HomeScreen = homeScreen
+        
+        let allProjectStore = ProjectStore()
+        let AllProjNavigationController = ViewControllers[1] as! UINavigationController
         let ProjectsController = AllProjNavigationController.topViewController as! ProjectsViewController
-        
-        let MyProjNavigationController = ViewControllers[3] as! UINavigationController
-        let JudgingController = MyProjNavigationController.topViewController as! JudgingViewController
-        
         ProjectsController.ProjectStore = allProjectStore
+        
+        let myProjectStore = ProjectStore()
+        let MyProjNavigationController = ViewControllers[2] as! UINavigationController
+        let JudgingController = MyProjNavigationController.topViewController as! JudgingViewController
         JudgingController.ProjectStore = myProjectStore
         
         return true
