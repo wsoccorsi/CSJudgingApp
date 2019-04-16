@@ -7,6 +7,7 @@ enum WebError: Error {
 enum EndPoint: String {
     case allProjects = "cs-judge/v1/projects/year/2018"
     case  myProjects = "cs-judge/v1/users/my-judging-projects/current"
+    case homePage = "cs-judge/v1/fairs/current"
 }
 
 enum TokenResult {
@@ -31,6 +32,9 @@ class WebAPI {
     
     var myProjectsURL: URL {
         return CreateURL(endpoint: .myProjects, parameters: nil)
+    }
+    static var homePageURL: URL{
+        return CreateURL(endpoint: .homePage, parameters: nil)
     }
     
     //=====================================================================
@@ -213,6 +217,41 @@ class WebAPI {
             })
             
             task.resume()
+        }
+    }
+    static func ExtractHomeScreen(from data: Data) -> HomeScreenStoreResult {
+        
+        do
+        {
+            
+            
+            let JSONObject = try JSONSerialization.jsonObject(with: data, options: [])
+            // "http://cs-judge.w3.uvm.edu/app/wp-content/uploads/2018/10/CS_Fair-25.jpg"
+            guard
+                let JSONDictionary = JSONObject as? [AnyHashable:Any],
+                
+                let id = JSONDictionary["id"] as? Int,
+                let Featured_img_url = JSONDictionary["featured_image_url"] as? String,
+                let name = JSONDictionary["name"]  as? String,
+                let Deescription = JSONDictionary["description"] as? String,
+                let year = JSONDictionary["year"] as? String,
+                let Is_current = JSONDictionary["is_current"] as? Bool,
+                let Date = JSONDictionary["date"] as? String
+                else
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
+            let HomeScreenReturn = HomeScreen(id: id, name: name, deescription: Deescription, year: year, is_current: Is_current, featured_img_url: Featured_img_url, date: Date)
+            
+            
+            
+            
+            
+            return .Success(HomeScreenReturn)
+        }
+        catch let Error
+        {
+            return .Failure(Error)
         }
     }
 }
