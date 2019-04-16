@@ -18,6 +18,9 @@ class HomeScreenViewController : UIViewController {
     @IBOutlet var deeescription: UILabel!
     @IBOutlet var date : UILabel!
     
+    var isVisible: Bool = false
+    @IBOutlet var MenuLead: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -57,4 +60,29 @@ class HomeScreenViewController : UIViewController {
                 print("Error Fetching HomeScreen: \(error)")
         }        
     }
+    
+    @IBAction func buttonTapped(_ sender: Any)
+    {
+        if (!isVisible)
+        {
+            //TrailingConst.constant = -150
+            //LeadingConst.constant = 150
+            MenuLead.constant = 0
+            isVisible = true
+        }
+        else
+        {
+            //TrailingConst.constant = 0
+            //LeadingConst.constant = 0
+            MenuLead.constant = -150
+            isVisible = false
+        }
+        
+        print("Button Works")
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
 }

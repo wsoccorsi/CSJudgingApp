@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //print(ViewControllers)
         
         let homeScreen = HomeScreen()
-        let HomeScreenController = ViewControllers[0] as! HomeScreenViewController
-        //let HomeScreenController = HomeNavigationController.topViewController as! HomeScreenViewController
+        let HomeNavigationController = ViewControllers[0] as! UINavigationController
+        let HomeScreenController = HomeNavigationController.topViewController as! HomeScreenViewController
         HomeScreenController.HomeScreen = homeScreen
         
         let allProjectStore = ProjectStore()
