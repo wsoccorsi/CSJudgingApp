@@ -1,37 +1,48 @@
-//
-//  HomeScreenViewController.swift
-//  CSJudgingApp
-//
-//  Created by Jason Campbell on 3/27/19.
-//  Copyright © 2019 William  Soccorsi. All rights reserved.
-//
-
 import UIKit
 
 class HomeScreenViewController : UIViewController {
     
     var HomeScreen : HomeScreen!
-    var img : UIImage!
     
+    var img : UIImage!
     @IBOutlet var imgView : UIImageView!
     @IBOutlet var name : UILabel!
     @IBOutlet var deeescription: UILabel!
     @IBOutlet var date : UILabel!
     
+    var API: WebAPI!
+    var CData: CoreData!
+
     var isVisible: Bool = false
-    @IBOutlet var MenuLead: NSLayoutConstraint!
     
-    override func viewDidLoad() {
-        
+    @IBOutlet var Username: UITextField!
+    @IBOutlet var Password: UITextField!
+    @IBOutlet var Status: UILabel!
+    
+    @IBOutlet var MenuLead: NSLayoutConstraint!
+    @IBOutlet var MenuWidth: NSLayoutConstraint!
+    @IBOutlet weak var UsernameCenter: NSLayoutConstraint!
+    @IBOutlet weak var PasswordCenter: NSLayoutConstraint!
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        let API = WebAPI()
-        API.FetchHomeScreenFromWeb(completion: updateView)
+        Username.text = "william.slocum@uvm.edu"
+        Password.text = "Password12345Password"
         
+        MenuWidth.constant = UIScreen.main.bounds.width 
+        
+        API.FetchHomeScreenFromWeb(completion: updateView)
     }
     
-    func updateView(homeScreenResult: HomeScreenResult) {
-        
+    override func viewDidAppear(_ animated: Bool) {
+        // API.FetchHomeScreenFromWeb(completion: updateView)
+    }
+    
+    func updateView(homeScreenResult: HomeScreenResult)
+    {
         switch homeScreenResult
         {
             case let .Success(HomeScreen):
@@ -65,24 +76,37 @@ class HomeScreenViewController : UIViewController {
     {
         if (!isVisible)
         {
-            //TrailingConst.constant = -150
-            //LeadingConst.constant = 150
             MenuLead.constant = 0
             isVisible = true
         }
         else
         {
-            //TrailingConst.constant = 0
-            //LeadingConst.constant = 0
-            MenuLead.constant = -150
+            MenuLead.constant = UIScreen.main.bounds.width * -1
+            API.FetchHomeScreenFromWeb(completion: updateView)
             isVisible = false
         }
         
-        print("Button Works")
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            self.view.layoutIfNeeded()
-        })
+        UIView.animate(withDuration: 0.4, animations: {self.view.layoutIfNeeded()})
     }
     
+    @IBAction func submit(_ sender: Any) {        
+        
+        let didLogIn = API.LogIn(username: Username.text!, password: Password.text!)
+        API.isLoggedIn = didLogIn
+        self.updateMenuView()
+    }
+    
+    func updateMenuView()
+    {
+        
+        if(API.isLoggedIn) {
+            Status.text = "Logged In As\n" + Username.text!
+            UsernameCenter.constant = 1000
+            PasswordCenter.constant = 1000
+        }
+        else {
+            Status.text = ""
+        }
+        
+    }
 }

@@ -10,9 +10,9 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let ProjectList = JSONDictionary["projects"] as? [[AnyHashable:Any]]//,
             else
-        {
-            return .Failure(WebError.InvalidJSON)
-        }
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
         
         var ProjectsReturn: [Project] = []
         
@@ -33,9 +33,6 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             ProjectsReturn.append(NewProject)
         }
         
-        //======
-        //==08==
-        //======
         return .Success(ProjectsReturn)
     }
     catch let Error
@@ -54,10 +51,9 @@ func ExtractToken(from data: Data) -> TokenResult {
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let Token = JSONDictionary["token"] as? String//,
             else
-        {
-            print("Here")
-            return .Failure(WebError.InvalidJSON)
-        }
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
         
         return .Success(Token)
     }

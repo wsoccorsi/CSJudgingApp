@@ -19,10 +19,16 @@ class WebAPI {
     
     //=====================================================================
     
-    var Username: String? = "william.slocum@uvm.edu"
-    var Password: String? = "Password12345Password"
+    var Data: CoreData!
+    
+    var isLoggedIn: Bool = false
+    
+    var Username: String? = nil
+    var Password: String? = nil
     
     var BearerToken: String? = nil
+    
+    var LogInSuccessful: Bool = false
     
     private var BaseURL = "http://cs-judge.w3.uvm.edu/app/wp-json/"
     
@@ -59,12 +65,15 @@ class WebAPI {
     
     //=====================================================================
     
-    private func GetBearerToken(username: String?, password: String?, completion: @escaping () -> Void) -> Void
+    public func LogIn(username: String, password: String) -> Bool
     {
+        Username = username
+        Password = password
+        
         var components = URLComponents(string: "http://cs-judge.w3.uvm.edu/app/wp-json/jwt-auth/v1/token")!
         var queryItems = [URLQueryItem]()
-        queryItems.append(URLQueryItem(name: "username", value: username!))
-        queryItems.append(URLQueryItem(name: "password", value: password!))
+        queryItems.append(URLQueryItem(name: "username", value: Username))
+        queryItems.append(URLQueryItem(name: "password", value: Password))
         components.queryItems = queryItems
         
         var request = URLRequest(url: components.url!)
@@ -73,24 +82,44 @@ class WebAPI {
         let task = session.dataTask(with: request, completionHandler:
         {
             (data, response, error) -> Void in
-            
-            let result = self.ProcessTokenRequest(data: data, error: error)
-            
-            OperationQueue.main.addOperation
+
+            if let HTTPResponse = response as? HTTPURLResponse
             {
-                switch result
+                if(HTTPResponse.statusCode != 200)
                 {
-                    case let .Success(token):
-                        self.BearerToken = token
-                        completion()
-                    
-                    case let .Failure(error):
-                        print("Error Fetching Projects: \(error)")
+                    self.LogInSuccessful = false
+                }
+                else
+                {
+                    self.LogInSuccessful = true
+                }
+            }
+            
+            if (self.LogInSuccessful)
+            {
+                let result = self.ProcessTokenRequest(data: data, error: error)
+            
+                OperationQueue.main.addOperation
+                {
+                        switch result
+                        {
+                            case let .Success(token):
+                            
+                                self.BearerToken = token
+                            
+                                self.Data.updateEntity(Username: self.Username!, Password: self.Password!, Token: token, Date: Date())
+                            
+                            case let .Failure(error):
+                                print("Error Getting Token: \(error)")
+                        }
                 }
             }
         })
         
         task.resume()
+        
+        print(LogInSuccessful)
+        return LogInSuccessful
     }
     
     //=====================================================================
@@ -139,34 +168,11 @@ class WebAPI {
     
     func FetchAllProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
         
-        let url = allProjectsURL
-        
-        if (BearerToken == nil)
+        if(BearerToken != nil)
         {
-            GetBearerToken(username: Username, password: Password, completion:
-                {
-                    var request = URLRequest(url: url)
-                    
-                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
-                    
-                    let task = self.session.dataTask(with: request, completionHandler:
-                    {
-                        (data, response, error) -> Void in
-                        
-                        let result = self.ProcessRequest(data: data, error: error)
-                        
-                        OperationQueue.main.addOperation
-                            {
-                                
-                                completion(result)
-                        }
-                    })
-                    
-                    task.resume()
-            })
-        }
-        else
-        {
+            
+            let url = allProjectsURL
+            
             var request = URLRequest(url: url)
             
             request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
@@ -185,6 +191,10 @@ class WebAPI {
             })
             
             task.resume()
+        }
+        else
+        {
+            print("FetchAllProjectsFromWeb: No Bearer Token")
         }
     }
     
@@ -192,34 +202,11 @@ class WebAPI {
     
     func FetchMyProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
         
-        let url = myProjectsURL
-        
-        if (BearerToken == nil)
+        if(BearerToken != nil)
         {
-            GetBearerToken(username: Username, password: Password, completion:
-            {
-                    var request = URLRequest(url: url)
-                
-                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
-                
-                    let task = self.session.dataTask(with: request, completionHandler:
-                    {
-                        (data, response, error) -> Void in
-                        
-                        let result = self.ProcessRequest(data: data, error: error)
-                        
-                        OperationQueue.main.addOperation
-                            {
-                                
-                                completion(result)
-                        }
-                    })
-                
-                    task.resume()
-            })
-        }
-        else
-        {
+            
+            let url = myProjectsURL
+            
             var request = URLRequest(url: url)
             
             request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
@@ -239,40 +226,21 @@ class WebAPI {
             
             task.resume()
         }
+        else
+        {
+            print("FetchMyProjectsFromWeb: No Bearer Token")
+        }
     }
     
     //=====================================================================
-    
+        
     func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void) {
         
-        let url = homePageURL
-        
-        if (BearerToken == nil)
+        if(BearerToken != nil)
         {
-            GetBearerToken(username: Username, password: Password, completion:
-                {
-                    var request = URLRequest(url: url)
-                    
-                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
-                    
-                    let task = self.session.dataTask(with: request, completionHandler:
-                    {
-                        (data, response, error) -> Void in
-                        
-                        let result = self.ProcessHomeScreenRequest(data: data, error: error)
-                        
-                        OperationQueue.main.addOperation
-                        {
-                                
-                                completion(result)
-                        }
-                    })
-                    
-                    task.resume()
-            })
-        }
-        else
-        {
+            
+            let url = homePageURL
+            
             var request = URLRequest(url: url)
             
             request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
@@ -284,16 +252,17 @@ class WebAPI {
                 let result = self.ProcessHomeScreenRequest(data: data, error: error)
                 
                 OperationQueue.main.addOperation
-                {
+                    {
                         
                         completion(result)
                 }
             })
             
-            task.resume()
+            task.resume()            
+        }
+        else
+        {
+            print("FetchHomeScreenFromWeb: No Bearer Token")
         }
     }
-    
-    //=====================================================================
-    
 }
