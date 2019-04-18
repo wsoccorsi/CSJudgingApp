@@ -78,6 +78,9 @@ class ProjectsViewController: UITableViewController
         let CatEnum = Category(rawValue: cat)
         let CatLabelColor = UIColorFromCat(cat: CatEnum!)
         
+        //bootleg ascii fix :)
+        project.name = project.name.replacingOccurrences(of: "&#039;", with: "'")
+        project.name = project.name.replacingOccurrences(of: "&rsquo;", with: "'")
         cell.nameLabel.text = project.name
         cell.nameLabel.numberOfLines = 0
         cell.nameLabel.lineBreakMode = .byWordWrapping
