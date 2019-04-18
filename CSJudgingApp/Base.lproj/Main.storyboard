@@ -117,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5Z-we-mg0">
-                                <rect key="frame" x="10" y="0.0" width="355" height="667"/>
+                                <rect key="frame" x="11" y="0.0" width="355" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="120" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-a0-dza">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="347"/>
