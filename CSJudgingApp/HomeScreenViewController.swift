@@ -32,7 +32,8 @@ class HomeScreenViewController : UIViewController {
         Username.text = "william.slocum@uvm.edu"
         Password.text = "Password12345Password"
         
-        MenuWidth.constant = UIScreen.main.bounds.width 
+        MenuWidth.constant = UIScreen.main.bounds.width
+        MenuLead.constant = UIScreen.main.bounds.width * -1
         
         API.FetchHomeScreenFromWeb(completion: updateView)
     }
