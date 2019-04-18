@@ -1,89 +1,111 @@
-//
-//  HomeScreenViewController.swift
-//  CSJudgingApp
-//
-//  Created by Jason Campbell on 3/27/19.
-//  Copyright © 2019 William  Soccorsi. All rights reserved.
-//
-
 import UIKit
 
 class HomeScreenViewController : UIViewController {
     
-    var HomeScreenStore2 : HomeScreenStore!
+    var HomeScreen : HomeScreen!
+    
     var img : UIImage!
-    @IBOutlet var imgView : UIImageView! //i
+    @IBOutlet var imgView : UIImageView!
     @IBOutlet var name : UILabel!
     @IBOutlet var deeescription: UILabel!
     @IBOutlet var date : UILabel!
     
-    override func viewDidLoad() {
-        //        var HomeScreenStore99 : HomeScreenStore = HomeScreenStore(HomeScreenStore: HomeScreen)
-        let HomeScreen5 = HomeScreen(id: 11, name: "" , deescription: "", year: "", is_current: true, featured_img_url: "", date: "")
-        HomeScreenStore2 = HomeScreenStore(HomeScreenStore : HomeScreen5)
-        HomeScreenStore2.HomeScreenStore.id = 11
-        HomeScreenStore2.HomeScreenStore.featured_img_url = "HomeScreen.featured_img_url"
-        //        HomeScreenStore2.HomeScreenStore.date = "HomeScreen.date"
-        //        HomeScreenStore2.HomeScreenStore.name = "1HomeScreen.name"
-        //        HomeScreenStore2.HomeScreenStore.deescription = "HomeScreen.deescription"
-        //        HomeScreenStore2.HomeScreenStore.year = "HomeScreen.year"
-        //        HomeScreenStore2.HomeScreenStore.is_current = true
-        //        HomeScreenStore2.FetchAllProjectsFromWeb(completion: updateTableView)
-        
-        
-        
-        
-        //img = UIImage(
+    var API: WebAPI!
+    var CData: CoreData!
+
+    var isVisible: Bool = false
+    
+    @IBOutlet var Username: UITextField!
+    @IBOutlet var Password: UITextField!
+    @IBOutlet var Status: UILabel!
+    
+    @IBOutlet var MenuLead: NSLayoutConstraint!
+    @IBOutlet var MenuWidth: NSLayoutConstraint!
+    @IBOutlet weak var UsernameCenter: NSLayoutConstraint!
+    @IBOutlet weak var PasswordCenter: NSLayoutConstraint!
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        HomeScreenStore2.FetchAllProjectsFromWeb(completion: updateTableView)
         
+        Username.text = "william.slocum@uvm.edu"
+        Password.text = "Password12345Password"
+        
+        MenuWidth.constant = UIScreen.main.bounds.width 
+        
+        API.FetchHomeScreenFromWeb(completion: updateView)
     }
-    func updateTableView(homeScreenResult: HomeScreenStoreResult) {
-        
-        
-        //        name.text = HomeScreenStore2.HomeScreenStore.name
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // API.FetchHomeScreenFromWeb(completion: updateView)
+    }
+    
+    func updateView(homeScreenResult: HomeScreenResult)
+    {
         switch homeScreenResult
         {
-        case let .Success(HomeScreen):
-            //            print(HomeScreen.id)
-            HomeScreenStore2.HomeScreenStore.id = HomeScreen.id
-            //            print(HomeScreenStore2.HomeScreenStore.id)
-            HomeScreenStore2.HomeScreenStore.featured_img_url = HomeScreen.featured_img_url
-            HomeScreenStore2.HomeScreenStore.date = HomeScreen.date
-            HomeScreenStore2.HomeScreenStore.name = HomeScreen.name
-            HomeScreenStore2.HomeScreenStore.deescription = HomeScreen.deescription
-            HomeScreenStore2.HomeScreenStore.year = HomeScreen.year
-            HomeScreenStore2.HomeScreenStore.is_current = HomeScreen.is_current
-            
-            let image_url: String? = HomeScreenStore2.HomeScreenStore.featured_img_url
-            if let img_url = image_url{
-                do {
-                    //                HomeScreenStore2.FetchAllProjectsFromWeb(completion: updateTableView)
-                    let url = URL(string: img_url)
-                    let data = try Data(contentsOf: url!)
-                    imgView.image = UIImage(data: data)
-                    
-                    
-                    
-                }
-                catch{
-                    print(error)
+            case let .Success(HomeScreen):
+                
+                let image_url: String? = HomeScreen.featured_img_url
+                if let img_url = image_url
+                {
+                    do {
+                        let url = URL(string: img_url)
+                        let data = try Data(contentsOf: url!)
+                        imgView.image = UIImage(data: data)
+                    }
+                    catch {
+                        print(error)
+                    }
                 }
                 
-            }
-            name.text = HomeScreenStore2.HomeScreenStore.name
-            let deeescriptiontemp = HomeScreenStore2.HomeScreenStore.deescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-            deeescription.text = deeescriptiontemp
-            date.text = HomeScreenStore2.HomeScreenStore.date
-            //            imgView = UIImageView(image: img!)
-            //            imgView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-            //            imgView.image = img
+                name.text = HomeScreen.name
+                
+                let deeescriptiontemp = HomeScreen.deescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+                deeescription.text = deeescriptiontemp
+                
+                date.text = HomeScreen.date
             
-            
-        case let .Failure(error):
-            
-            print("Error Fetching HomeScreen: \(error)")
+            case let .Failure(error):
+                print("Error Fetching HomeScreen: \(error)")
+        }        
+    }
+    
+    @IBAction func buttonTapped(_ sender: Any)
+    {
+        if (!isVisible)
+        {
+            MenuLead.constant = 0
+            isVisible = true
+        }
+        else
+        {
+            MenuLead.constant = UIScreen.main.bounds.width * -1
+            API.FetchHomeScreenFromWeb(completion: updateView)
+            isVisible = false
+        }
+        
+        UIView.animate(withDuration: 0.4, animations: {self.view.layoutIfNeeded()})
+    }
+    
+    @IBAction func submit(_ sender: Any) {        
+        
+        let didLogIn = API.LogIn(username: Username.text!, password: Password.text!)
+        API.isLoggedIn = didLogIn
+        self.updateMenuView()
+    }
+    
+    func updateMenuView()
+    {
+        
+        if(API.isLoggedIn) {
+            Status.text = "Logged In As\n" + Username.text!
+            UsernameCenter.constant = 1000
+            PasswordCenter.constant = 1000
+        }
+        else {
+            Status.text = ""
         }
         
     }

@@ -10,9 +10,9 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let ProjectList = JSONDictionary["projects"] as? [[AnyHashable:Any]]//,
             else
-        {
-            return .Failure(WebError.InvalidJSON)
-        }
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
         
         var ProjectsReturn: [Project] = []
         
@@ -33,9 +33,6 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             ProjectsReturn.append(NewProject)
         }
         
-        //======
-        //==08==
-        //======
         return .Success(ProjectsReturn)
     }
     catch let Error
@@ -54,13 +51,47 @@ func ExtractToken(from data: Data) -> TokenResult {
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let Token = JSONDictionary["token"] as? String//,
             else
-        {
-            print("Here")
-            return .Failure(WebError.InvalidJSON)
-        }
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
         
         return .Success(Token)
     }
+    catch let Error
+    {
+        return .Failure(Error)
+    }
+}
+
+func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
+    
+    do
+    {
+        let JSONObject = try JSONSerialization.jsonObject(with: data, options: [])
+        
+        // "http://cs-judge.w3.uvm.edu/app/wp-content/uploads/2018/10/CS_Fair-25.jpg"
+        
+        guard
+            let JSONDictionary = JSONObject as? [AnyHashable:Any],
+            
+            let id = JSONDictionary["id"] as? Int,
+            let Featured_img_url = JSONDictionary["featured_image_url"] as? String,
+            let name = JSONDictionary["name"]  as? String,
+            let Deescription = JSONDictionary["description"] as? String,
+            let year = JSONDictionary["year"] as? String,
+            let Is_current = JSONDictionary["is_current"] as? Bool,
+            let Date = JSONDictionary["date"] as? String
+            
+            else
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
+        
+        let HomeScreenReturn = HomeScreen(id: id, name: name, deescription: Deescription, year: year, is_current: Is_current, featured_img_url: Featured_img_url, date: Date)
+        
+        return .Success(HomeScreenReturn)
+    }
+        
     catch let Error
     {
         return .Failure(Error)
