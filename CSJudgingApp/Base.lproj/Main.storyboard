@@ -40,6 +40,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="esq-oT-8c6"/>
                     <connections>
                         <outlet property="messageLabel" destination="Fxe-3f-TXa" id="mm7-Us-hKi"/>
+                        <segue destination="zYk-nD-yjP" kind="show" identifier="mySegueID" id="ndO-pd-d9N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAQ-xJ-bpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,13 +125,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="120" axis="vertical" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-a0-dza">
-                                <rect key="frame" x="0.0" y="98" width="375" height="538"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="631"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I08-yU-ICa">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="382.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-VL-eMR">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="382.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -138,7 +139,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LBU-cD-Lqc">
-                                        <rect key="frame" x="0.0" y="269" width="375" height="269"/>
+                                        <rect key="frame" x="0.0" y="362" width="375" height="269"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Description" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9k4-xW-uuc">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
@@ -464,6 +465,6 @@
         <image name="StarIcon" width="813" height="760"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1YR-Wt-1tt"/>
+        <segue reference="ndO-pd-d9N"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,7 +19,7 @@ class WebAPI {
     //=====================================================================
     
     var Username: String? = "william.slocum@uvm.edu"
-    var Password: String? = "XqCgqAb3gFuCKze7#dYt26)F"
+    var Password: String? = "Password12345Password"
     
     var BearerToken: String? = nil
     
@@ -32,6 +32,10 @@ class WebAPI {
     var myProjectsURL: URL {
         return CreateURL(endpoint: .myProjects, parameters: nil)
     }
+    
+    var QR_URL:URL? = nil
+    
+    
     
     //=====================================================================
     
@@ -209,6 +213,57 @@ class WebAPI {
                     {
                         
                         completion(result)
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    
+    func GetQRProject(completion: @escaping (ProjectsResult) -> Void ,link:URL) {
+        
+        let url = link
+        
+        if (BearerToken == nil)
+        {
+            GetBearerToken(username: Username, password: Password, completion:
+                {
+                    var request = URLRequest(url: url)
+                    
+                    request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+                    
+                    let task = self.session.dataTask(with: request, completionHandler:
+                    {
+                        (data, response, error) -> Void in
+                        
+                        let result = self.ProcessRequest(data: data, error: error)
+                        
+                        OperationQueue.main.addOperation
+                            {
+                                completion(result)
+                                
+                        }
+                    })
+                    
+                    task.resume()
+            })
+        }
+        else
+        {
+            var request = URLRequest(url: url)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
+                
+                let result = self.ProcessRequest(data: data, error: error)
+                
+                OperationQueue.main.addOperation
+                    {
+                        completion(result)
+                    
                 }
             })
             
