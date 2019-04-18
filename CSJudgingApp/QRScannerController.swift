@@ -1,18 +1,21 @@
 //Hudson Elledge
-//
-
 import UIKit
 import AVFoundation
+import Foundation
+
 
 class QRScannerController: UIViewController {
     
     @IBOutlet var messageLabel:UILabel!
     @IBOutlet var topbar: UIView!
     
+    var API: WebAPI!
+    
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
+    var ProjectStore: ProjectStore!
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
@@ -107,26 +110,63 @@ class QRScannerController: UIViewController {
             return
         }
         
-        let alertPrompt = UIAlertController(title: "Open App", message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
-        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            //here is where URL is stored
-            if let url = URL(string: decodedURL) {
-                print(url)
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }
-        })
+        //here is where URL is stored
+       // if let url = URL(string: decodedURL) {
+            print(decodedURL)
+            //let API = WebAPI()
+            API.GetQRProject(completion: segueTableView,link:decodedURL)
+            
+            
+            
+        //}
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         
-        alertPrompt.addAction(confirmAction)
-        alertPrompt.addAction(cancelAction)
         
-        present(alertPrompt, animated: true, completion: nil)
+    }
+    func segueTableView(projectsResult: ProjectsResult) {
+        
+        switch projectsResult
+        {
+        case let .Success(projects):
+            
+            ProjectStore.Projects = projects
+            performSegue(withIdentifier: "mySegueID", sender: self)
+            
+        case let .Failure(error):
+            
+            print("Error Fetching Projects: \(error)")
+        }
     }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "mySegueID"{
+            let p = ProjectStore.Projects[0]
+            
+            let DetailsViewController = segue.destination as! DetailsViewController
+            DetailsViewController.Project = p
+            
+            
+        }
+        else{
+            preconditionFailure("Unexpected Segue Identifier.")
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
 
 extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
     

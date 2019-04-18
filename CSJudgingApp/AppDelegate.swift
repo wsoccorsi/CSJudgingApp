@@ -45,6 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JudgingController.API = API
         JudgingController.CData = Data
         
+        let QRProjectStore = ProjectStore()
+        let QRController = ViewControllers[3] as! QRScannerController
+        QRController.ProjectStore = QRProjectStore
+        QRController.API = API
+        
         if (Data.userDataExists()) {
             
             API.Username = Data.getUsernameFromCore()

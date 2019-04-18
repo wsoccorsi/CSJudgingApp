@@ -256,6 +256,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5hy-cU-W7t"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ijx-yA-A5d"/>
                     <connections>
                         <outlet property="catLabel" destination="EFg-B8-RhB" id="6IG-nt-eyJ"/>
                         <outlet property="courseLabel" destination="pYf-Sc-0tW" id="A8S-Yf-nsK"/>
@@ -736,6 +737,6 @@
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rKF-xu-BTD"/>
+        <segue reference="1YR-Wt-1tt"/>
     </inferredMetricsTieBreakers>
 </document>
