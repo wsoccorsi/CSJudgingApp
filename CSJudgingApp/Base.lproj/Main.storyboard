@@ -698,10 +698,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StarIcon" width="813" height="760"/>
-        <image name="courses" width="25" height="26"/>
-        <image name="location" width="27" height="29"/>
-        <image name="play" width="22" height="21"/>
+        <image name="StarIcon" width="406" height="380"/>
+        <image name="courses" width="50" height="52"/>
+        <image name="location" width="54" height="58"/>
+        <image name="play" width="44" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rKF-xu-BTD"/>
