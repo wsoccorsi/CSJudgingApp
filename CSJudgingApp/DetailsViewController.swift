@@ -31,6 +31,13 @@ class DetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         nameLabel.numberOfLines=0
         descLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        //bootleg fix for ascii '
+        Project.name = Project.name.replacingOccurrences(of: "&#039;", with: "'")
+        Project.name = Project.name.replacingOccurrences(of: "&rsquo;", with: "'")
+        Project.desc = Project.desc.replacingOccurrences(of: "&#039;", with: "'")
+        Project.desc = Project.desc.replacingOccurrences(of: "&rsquo;", with: "'")
+
         nameLabel.text = Project.name
         //descLabel.sizeToFit()
         descLabel.text = Project.desc
