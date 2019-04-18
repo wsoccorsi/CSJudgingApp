@@ -3,12 +3,11 @@ import UIKit
 class JudgingViewController: UITableViewController {
     
     var ProjectStore: ProjectStore!
+    var API: WebAPI!
+    var CData: CoreData!
     
-    //======
-    //==01==
-    //======
-    override func viewDidLoad() {
-        
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -22,43 +21,36 @@ class JudgingViewController: UITableViewController {
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.separatorColor = UIColor.darkGray
-        
-        //======
-        //==02==
-        //======
-        //ProjectStore.FetchAllProjectsFromWeb(completion: updateTableView)
-        
-        let API = WebAPI()
+
         API.FetchMyProjectsFromWeb(completion: updateTableView)
     }
     
-    //======
-    //==11==
-    //======
-    func updateTableView(projectsResult: ProjectsResult) {
-        
-        switch projectsResult
-        {
-        case let .Success(projects):
-            
-            ProjectStore.Projects = projects
-            
-            self.tableView.reloadData()
-            
-        case let .Failure(error):
-            
-            print("Error Fetching Projects: \(error)")
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        API.FetchMyProjectsFromWeb(completion: updateTableView)
     }
     
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func updateTableView(projectsResult: ProjectsResult)
+    {
+        switch projectsResult
+        {
+            case let .Success(projects):
+            
+                ProjectStore.Projects = projects
+            
+                self.tableView.reloadData()
+            
+            case let .Failure(error):
+            
+                print("Error Fetching Projects: \(error)")
+        }
+    }
         
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ProjectStore.Projects.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let project = ProjectStore.Projects[indexPath.row]
         
         let cat = String(project.cat.split(separator: "(").first!)
@@ -89,23 +81,24 @@ class JudgingViewController: UITableViewController {
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        switch segue.identifier
+        {
+            case "showDetails"?:
             
-        case "showDetails"?:
+                if let row = tableView.indexPathForSelectedRow?.row
+                {
+                    let p = ProjectStore.Projects[row]
+                
+                    let DetailsViewController = segue.destination as! DetailsViewController
+                
+                    DetailsViewController.Project = p
+                }
             
-            if let row = tableView.indexPathForSelectedRow?.row {
-                
-                let p = ProjectStore.Projects[row]
-                
-                let DetailsViewController = segue.destination as! DetailsViewController
-                
-                DetailsViewController.Project = p
-            }
-        default:
-            preconditionFailure("Unexpected Segue Identifier.")
+            default:
+                preconditionFailure("Unexpected Segue Identifier.")
         }
     }
-    
 }
 

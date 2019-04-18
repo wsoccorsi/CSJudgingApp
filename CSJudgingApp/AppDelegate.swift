@@ -12,31 +12,59 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    let API = WebAPI();
+    
+    let Data = CoreData();
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let allProjectStore = ProjectStore()
-        let myProjectStore = ProjectStore()
+        API.Data = Data
         
         let TabBarController = window!.rootViewController as! UITabBarController
-        
         let ViewControllers: Array = TabBarController.viewControllers!
         
-        print(ViewControllers)
+        let homeScreen = HomeScreen()
+        let HomeNavigationController = ViewControllers[0] as! UINavigationController
+        let HomeScreenController = HomeNavigationController.topViewController as! HomeScreenViewController
+        HomeScreenController.HomeScreen = homeScreen
+        HomeScreenController.API = API
+        HomeScreenController.CData = Data
         
-        //Accessing the ProjectsViewController (1st Element in the TabBarController)
-        let AllProjNavigationController = ViewControllers[0] as! UINavigationController
+        let allProjectStore = ProjectStore()
+        let AllProjNavigationController = ViewControllers[1] as! UINavigationController
         let ProjectsController = AllProjNavigationController.topViewController as! ProjectsViewController
-        
-        let MyProjNavigationController = ViewControllers[3] as! UINavigationController
-        let JudgingController = MyProjNavigationController.topViewController as! JudgingViewController
-        
         ProjectsController.ProjectStore = allProjectStore
+        ProjectsController.API = API
+        ProjectsController.CData = Data
+        
+        let myProjectStore = ProjectStore()
+        let MyProjNavigationController = ViewControllers[2] as! UINavigationController
+        let JudgingController = MyProjNavigationController.topViewController as! JudgingViewController
         JudgingController.ProjectStore = myProjectStore
+        JudgingController.API = API
+        JudgingController.CData = Data
+        
+        if (Data.userDataExists()) {
+            
+            API.Username = Data.getUsernameFromCore()
+            API.Password = Data.getPasswordFromCore()
+            
+            if (false) { // Data.isTokenOld()
+                // Generate New Token
+            }
+            else {
+                API.BearerToken = Data.getTokenFromCore()
+            }
+            
+            ProjectsController.viewDidLoad()
+            JudgingController.viewDidLoad()
+        }
+        else {
+            print("No Core Data: Login Required")
+        }
         
         return true
-        
     }
  
     func applicationWillResignActive(_ application: UIApplication) {
