@@ -33,7 +33,7 @@ class WebAPI {
     var myProjectsURL: URL {
         return CreateURL(endpoint: .myProjects, parameters: nil)
     }
-    static var homePageURL: URL{
+    var homePageURL: URL{
         return CreateURL(endpoint: .homePage, parameters: nil)
     }
     
