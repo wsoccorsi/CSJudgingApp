@@ -11,6 +11,23 @@
     </dependencies>
     <scenes>
         <!--Item-->
+        <scene sceneID="Otu-bE-lQj">
+            <objects>
+                <navigationController id="sfW-fN-tev" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="oFz-FW-DvU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ufh-hO-Hth">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bOX-Ea-Bfc" kind="relationship" relationship="rootViewController" id="Z05-aE-egG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6aw-Of-xIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2316" y="313"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="LEU-5A-KT4">
             <objects>
                 <viewController id="bOX-Ea-Bfc" customClass="QRScannerController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,13 +48,15 @@
                         <viewLayoutGuide key="safeArea" id="OiS-gY-BkW"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="esq-oT-8c6"/>
+                    <navigationItem key="navigationItem" id="aka-Z3-IqO"/>
                     <connections>
                         <outlet property="messageLabel" destination="Fxe-3f-TXa" id="mm7-Us-hKi"/>
+                        <segue destination="zYk-nD-yjP" kind="show" identifier="mySegueID" id="nAS-4H-LfU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAQ-xJ-bpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="313"/>
+            <point key="canvasLocation" x="2316" y="1056"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ejh-Xh-qyq">
@@ -52,7 +71,7 @@
                         <segue destination="VG8-BH-IPa" kind="relationship" relationship="viewControllers" id="duc-jK-X6A"/>
                         <segue destination="u0z-pQ-VjG" kind="relationship" relationship="viewControllers" id="gjw-3m-NPx"/>
                         <segue destination="nT4-WP-jHH" kind="relationship" relationship="viewControllers" id="mZr-SU-xRd"/>
-                        <segue destination="bOX-Ea-Bfc" kind="relationship" relationship="viewControllers" id="Wf1-At-UIN"/>
+                        <segue destination="sfW-fN-tev" kind="relationship" relationship="viewControllers" id="i6p-42-58Q"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Wq-NF-mdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -697,12 +716,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StarIcon" width="406" height="380"/>
-        <image name="courses" width="50" height="52"/>
-        <image name="location" width="54" height="58"/>
-        <image name="play" width="44" height="42"/>
+        <image name="StarIcon" width="813" height="760"/>
+        <image name="courses" width="25" height="26"/>
+        <image name="location" width="27" height="29"/>
+        <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1YR-Wt-1tt"/>
+        <segue reference="nAS-4H-LfU"/>
     </inferredMetricsTieBreakers>
 </document>

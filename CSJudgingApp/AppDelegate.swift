@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JudgingController.CData = Data
         
         let QRProjectStore = ProjectStore()
-        let QRController = ViewControllers[3] as! QRScannerController
+        let QRNavigationController = ViewControllers[3] as! UINavigationController
+        let QRController = QRNavigationController.topViewController as! QRScannerController
         QRController.ProjectStore = QRProjectStore
         QRController.API = API
         
