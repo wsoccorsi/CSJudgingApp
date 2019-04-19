@@ -114,7 +114,7 @@
                                 <rect key="frame" x="11" y="0.0" width="355" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="120" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-a0-dza">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="347"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="390"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-VL-eMR">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="26.5"/>
@@ -218,9 +218,18 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejj-70-87Y">
+                                                <rect key="frame" x="0.0" y="360" width="355" height="30"/>
+                                                <state key="normal" title="JUDGE"/>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="zYk-nD-yjP" eventType="touchUpInside" id="4xJ-l1-epf"/>
+                                                    <segue destination="AZA-Qh-8UY" kind="show" identifier="showJudging" id="MKD-mR-HSp"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="355" id="0R3-jU-jZj"/>
+                                            <constraint firstItem="Ejj-70-87Y" firstAttribute="centerX" secondItem="Bv5-a0-dza" secondAttribute="centerX" id="J0L-k2-NGw"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -258,6 +267,21 @@
             </objects>
             <point key="canvasLocation" x="636" y="1822"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="DsM-iP-GyF">
+            <objects>
+                <viewController id="AZA-Qh-8UY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BUi-XZ-xQJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="b6W-4e-DWu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z1z-ct-Woj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="2548"/>
+        </scene>
         <!--Item-->
         <scene sceneID="0ex-1l-ml7">
             <objects>
@@ -294,7 +318,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBV-Rm-QKt">
-                                            <rect key="frame" x="24" y="11" width="277" height="21.5"/>
+                                            <rect key="frame" x="24" y="11" width="292" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <nil key="highlightedColor"/>
@@ -312,10 +336,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DD9-q1-pm4">
-                                            <rect key="frame" x="311" y="11" width="40" height="40"/>
+                                            <rect key="frame" x="326" y="11" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="cpv-Hd-TLV"/>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="kd4-uD-f59"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="cpv-Hd-TLV"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="25" id="kd4-uD-f59"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -436,7 +460,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lz-nI-hLP">
-                                            <rect key="frame" x="24" y="11" width="277" height="21.5"/>
+                                            <rect key="frame" x="24" y="11" width="292" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <nil key="highlightedColor"/>
@@ -454,10 +478,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5r3-sY-1kv">
-                                            <rect key="frame" x="311" y="11" width="40" height="40"/>
+                                            <rect key="frame" x="326" y="11" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="VLF-Kp-n4n"/>
-                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="o2s-u6-xhb"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="25" id="VLF-Kp-n4n"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="o2s-u6-xhb"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -716,12 +740,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StarIcon" width="813" height="760"/>
+        <image name="StarIcon" width="491.51998901367188" height="478.07998657226562"/>
         <image name="courses" width="25" height="26"/>
         <image name="location" width="27" height="29"/>
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nAS-4H-LfU"/>
+        <segue reference="1YR-Wt-1tt"/>
     </inferredMetricsTieBreakers>
 </document>
