@@ -15,6 +15,7 @@
 		A500E61E2243189C007F65E0 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A500E61D2243189C007F65E0 /* Project.swift */; };
 		A565CF42224A856500191742 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565CF41224A856500191742 /* DetailsViewController.swift */; };
 		A5BDC953224C3B3F0028FC45 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDC952224C3B3F0028FC45 /* CustomCell.swift */; };
+		A5D38C0C226962D20012BD91 /* JudgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D38C0B226962D20012BD91 /* JudgeViewController.swift */; };
 		A5E8B39022665119008943F5 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E8B38F22665119008943F5 /* CoreData.swift */; };
 		A5E8B3932266565C008943F5 /* LogIn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5E8B3912266565C008943F5 /* LogIn.xcdatamodeld */; };
 		D59745482266287A00862229 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59745472266287A00862229 /* HomeScreen.swift */; };
@@ -57,6 +58,7 @@
 		A500E61D2243189C007F65E0 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A565CF41224A856500191742 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A5BDC952224C3B3F0028FC45 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		A5D38C0B226962D20012BD91 /* JudgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudgeViewController.swift; sourceTree = "<group>"; };
 		A5E8B38F22665119008943F5 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		A5E8B3922266565C008943F5 /* LogIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LogIn.xcdatamodel; sourceTree = "<group>"; };
 		D59745472266287A00862229 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				D597454B226628D600862229 /* HomeScreenViewController.swift */,
 				A5E8B38F22665119008943F5 /* CoreData.swift */,
 				A5E8B3912266565C008943F5 /* LogIn.xcdatamodeld */,
+				A5D38C0B226962D20012BD91 /* JudgeViewController.swift */,
 			);
 			path = CSJudgingApp;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D38C0C226962D20012BD91 /* JudgeViewController.swift in Sources */,
 				DBA0DF67225652C300C59F41 /* JudgingViewController.swift in Sources */,
 				D597454C226628D600862229 /* HomeScreenViewController.swift in Sources */,
 				DBA0DF6B225652DE00C59F41 /* DataHelper.swift in Sources */,

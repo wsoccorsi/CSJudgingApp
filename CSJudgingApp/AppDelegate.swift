@@ -20,12 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         API.Data = Data
+
+        let BarColor = HexStringToUIColor(hex:"23252B")
+        let TextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
+                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.heavy)]
         
         let TabBarController = window!.rootViewController as! UITabBarController
+        TabBarController.tabBar.barTintColor = BarColor
         let ViewControllers: Array = TabBarController.viewControllers!
         
         let homeScreen = HomeScreen()
         let HomeNavigationController = ViewControllers[0] as! UINavigationController
+        HomeNavigationController.navigationBar.barTintColor = BarColor
+        HomeNavigationController.navigationBar.titleTextAttributes = TextAttributes
         let HomeScreenController = HomeNavigationController.topViewController as! HomeScreenViewController
         HomeScreenController.HomeScreen = homeScreen
         HomeScreenController.API = API
@@ -33,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let allProjectStore = ProjectStore()
         let AllProjNavigationController = ViewControllers[1] as! UINavigationController
+        AllProjNavigationController.navigationBar.barTintColor = BarColor
+        AllProjNavigationController.navigationBar.titleTextAttributes = TextAttributes
         let ProjectsController = AllProjNavigationController.topViewController as! ProjectsViewController
         ProjectsController.ProjectStore = allProjectStore
         ProjectsController.API = API
@@ -40,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let myProjectStore = ProjectStore()
         let MyProjNavigationController = ViewControllers[2] as! UINavigationController
+        MyProjNavigationController.navigationBar.barTintColor = BarColor
+        MyProjNavigationController.navigationBar.titleTextAttributes = TextAttributes
         let JudgingController = MyProjNavigationController.topViewController as! JudgingViewController
         JudgingController.ProjectStore = myProjectStore
         JudgingController.API = API
@@ -47,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let QRProjectStore = ProjectStore()
         let QRNavigationController = ViewControllers[3] as! UINavigationController
+        QRNavigationController.navigationBar.barTintColor = BarColor
+        QRNavigationController.navigationBar.titleTextAttributes = TextAttributes
         let QRController = QRNavigationController.topViewController as! QRScannerController
         QRController.ProjectStore = QRProjectStore
         QRController.API = API

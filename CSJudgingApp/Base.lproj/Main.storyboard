@@ -65,7 +65,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dg1-gp-rub">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13763508199999999" green="0.14629629250000001" blue="0.16763991119999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="VG8-BH-IPa" kind="relationship" relationship="viewControllers" id="duc-jK-X6A"/>
@@ -222,7 +222,7 @@
                                                 <rect key="frame" x="0.0" y="360" width="355" height="30"/>
                                                 <state key="normal" title="JUDGE"/>
                                                 <connections>
-                                                    <action selector="buttonTapped:" destination="zYk-nD-yjP" eventType="touchUpInside" id="4xJ-l1-epf"/>
+                                                    <action selector="buttonTapped:" destination="zYk-nD-yjP" eventType="touchUpInside" id="fOm-Ya-paZ"/>
                                                     <segue destination="AZA-Qh-8UY" kind="show" identifier="showJudging" id="MKD-mR-HSp"/>
                                                 </connections>
                                             </button>
@@ -267,20 +267,122 @@
             </objects>
             <point key="canvasLocation" x="636" y="1822"/>
         </scene>
-        <!--View Controller-->
+        <!--Judge View Controller-->
         <scene sceneID="DsM-iP-GyF">
             <objects>
-                <viewController id="AZA-Qh-8UY" sceneMemberID="viewController">
+                <viewController id="AZA-Qh-8UY" customClass="JudgeViewController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BUi-XZ-xQJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojr-V6-sxe">
+                                <rect key="frame" x="8" y="89" width="53.5" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Functionality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsf-Hx-5Yf">
+                                <rect key="frame" x="8" y="149" width="138.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="C6t-U5-nFc">
+                                <rect key="frame" x="8" y="219.5" width="300" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcQ-rU-HT5">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="GSc-og-ttM"/>
+                                            <constraint firstAttribute="width" constant="50" id="GqR-p2-P2y"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="StarIcon"/>
+                                        <connections>
+                                            <action selector="F1Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="EdB-NT-1J9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ky-Zl-dwU">
+                                        <rect key="frame" x="62.5" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="D4U-Wf-Kgr"/>
+                                            <constraint firstAttribute="height" constant="50" id="bbu-8z-4GD"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="StarIcon"/>
+                                        <connections>
+                                            <action selector="F1Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="Tvc-dr-ekk"/>
+                                            <action selector="F2Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="mj0-4G-ANl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50K-v5-D2n">
+                                        <rect key="frame" x="125" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Fv9-13-85U"/>
+                                            <constraint firstAttribute="height" constant="50" id="RVD-sq-RGn"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="StarIcon"/>
+                                        <connections>
+                                            <action selector="F3Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="Ek3-Yk-taL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xp3-QX-YaK">
+                                        <rect key="frame" x="187.5" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="pYV-mF-hhJ"/>
+                                            <constraint firstAttribute="width" constant="50" id="xSv-jN-3yN"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="StarIcon"/>
+                                        <connections>
+                                            <action selector="F4Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="wPT-TK-ePS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgN-ED-dDh">
+                                        <rect key="frame" x="250" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="N5O-DS-lPs"/>
+                                            <constraint firstAttribute="height" constant="50" id="eo6-w3-eYV"/>
+                                        </constraints>
+                                        <size key="titleShadowOffset" width="1" height="0.0"/>
+                                        <state key="normal" title="Button" image="StarIcon"/>
+                                        <connections>
+                                            <action selector="F5Tap:" destination="AZA-Qh-8UY" eventType="touchUpInside" id="f6c-ok-YRz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="1Bj-R6-rgI"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Functionality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNK-mN-XEW">
+                                <rect key="frame" x="8" y="189" width="98" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13763508200645447" green="0.14629629254341125" blue="0.16763991117477417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YNK-mN-XEW" firstAttribute="leading" secondItem="b6W-4e-DWu" secondAttribute="leading" constant="8" id="3Gr-nP-REU"/>
+                            <constraint firstItem="ojr-V6-sxe" firstAttribute="leading" secondItem="b6W-4e-DWu" secondAttribute="leading" constant="8" id="DOO-gv-xgE"/>
+                            <constraint firstItem="C6t-U5-nFc" firstAttribute="leading" secondItem="b6W-4e-DWu" secondAttribute="leading" constant="8" id="Ey6-WC-a4k"/>
+                            <constraint firstItem="Bsf-Hx-5Yf" firstAttribute="leading" secondItem="b6W-4e-DWu" secondAttribute="leading" constant="8" id="Tnk-Zr-rv3"/>
+                            <constraint firstItem="Bsf-Hx-5Yf" firstAttribute="top" secondItem="ojr-V6-sxe" secondAttribute="bottom" constant="25" id="eOS-1C-TIe"/>
+                            <constraint firstItem="C6t-U5-nFc" firstAttribute="top" secondItem="YNK-mN-XEW" secondAttribute="bottom" constant="10" id="gh1-b5-cNQ"/>
+                            <constraint firstItem="ojr-V6-sxe" firstAttribute="top" secondItem="b6W-4e-DWu" secondAttribute="top" constant="25" id="orF-JG-e6v"/>
+                            <constraint firstItem="YNK-mN-XEW" firstAttribute="top" secondItem="Bsf-Hx-5Yf" secondAttribute="bottom" constant="10" id="wL7-l4-3nR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="b6W-4e-DWu"/>
                     </view>
+                    <connections>
+                        <outlet property="F1Button" destination="pcQ-rU-HT5" id="sAK-aD-BJY"/>
+                        <outlet property="F2Button" destination="1Ky-Zl-dwU" id="MTy-65-3Sa"/>
+                        <outlet property="F3Button" destination="50K-v5-D2n" id="w5j-sO-zsJ"/>
+                        <outlet property="F4Button" destination="xp3-QX-YaK" id="G1c-AF-iea"/>
+                        <outlet property="F5Button" destination="IgN-ED-dDh" id="t67-KR-Bua"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1z-ct-Woj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="2548"/>
+            <point key="canvasLocation" x="636" y="2547.9760119940033"/>
         </scene>
         <!--Item-->
         <scene sceneID="0ex-1l-ml7">
@@ -693,7 +795,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hh9-GH-Oad"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="X8I-ze-3ar"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="X8I-ze-3ar">
+                        <color key="badgeColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Computer Science Fair" id="hqb-4x-upQ">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="VzO-YU-w0c">
                             <connections>
@@ -723,7 +827,9 @@
         <scene sceneID="Jjt-sD-mUh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VG8-BH-IPa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="HZ7-PE-LRa"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="HZ7-PE-LRa">
+                        <color key="badgeColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xOw-Og-XzG">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -746,6 +852,6 @@
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1YR-Wt-1tt"/>
+        <segue reference="b7d-Q6-Xjr"/>
     </inferredMetricsTieBreakers>
 </document>

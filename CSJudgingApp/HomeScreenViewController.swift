@@ -27,7 +27,7 @@ class HomeScreenViewController : UIViewController {
     
     override func viewDidLoad()
     {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         
         Username.text = "william.slocum@uvm.edu"
         Password.text = "Password12345Password"

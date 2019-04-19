@@ -49,6 +49,9 @@ class DetailsViewController: UIViewController {
 
     }
     
+    @IBAction func buttonTapped(_ sender: Any) {
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch segue.identifier
