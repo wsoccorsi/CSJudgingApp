@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="2316" y="313"/>
         </scene>
-        <!--Item-->
+        <!--QR Scan-->
         <scene sceneID="LEU-5A-KT4">
             <objects>
                 <viewController id="bOX-Ea-Bfc" customClass="QRScannerController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="OiS-gY-BkW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="QRIcon" id="esq-oT-8c6"/>
+                    <tabBarItem key="tabBarItem" title="QR Scan" image="QRIcon" id="esq-oT-8c6"/>
                     <navigationItem key="navigationItem" id="aka-Z3-IqO"/>
                     <connections>
                         <outlet property="messageLabel" destination="Fxe-3f-TXa" id="mm7-Us-hKi"/>
@@ -388,7 +388,7 @@
         <scene sceneID="0ex-1l-ml7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u0z-pQ-VjG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" image="Keypad" id="amP-yV-tJa"/>
+                    <tabBarItem key="tabBarItem" title="Projects" image="List" id="amP-yV-tJa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jsa-vy-V1s">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -678,8 +678,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OcL-bf-UxN">
-                                <rect key="frame" x="0.0" y="44" width="416" height="465"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OcL-bf-UxN">
+                                <rect key="frame" x="0.0" y="44" width="416" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-LF-1BZ">
@@ -690,30 +690,30 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7o-Iv-SiK">
-                                        <rect key="frame" x="0.0" y="300" width="416" height="40"/>
+                                        <rect key="frame" x="0.0" y="305" width="416" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="cis-UV-IzU"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znj-iB-PPP">
-                                        <rect key="frame" x="0.0" y="340" width="416" height="25"/>
+                                        <rect key="frame" x="0.0" y="350" width="416" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="or4-y7-d6l"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsF-8l-cw5">
-                                        <rect key="frame" x="0.0" y="365" width="416" height="100"/>
+                                        <rect key="frame" x="0.0" y="380" width="416" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="qoe-jD-AXQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -787,7 +787,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.13725490196078433" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="top" secondItem="Hh9-GH-Oad" secondAttribute="top" id="C0R-Vp-Dr3"/>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="leading" secondItem="Hh9-GH-Oad" secondAttribute="leading" constant="-375" id="GRX-c6-cyb"/>
@@ -795,11 +795,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hh9-GH-Oad"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="X8I-ze-3ar">
+                    <tabBarItem key="tabBarItem" title="Home" id="X8I-ze-3ar">
                         <color key="badgeColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Computer Science Fair" id="hqb-4x-upQ">
-                        <barButtonItem key="leftBarButtonItem" title="Login" image="List" id="VzO-YU-w0c">
+                        <barButtonItem key="leftBarButtonItem" title="Login" image="Menu" id="VzO-YU-w0c">
                             <connections>
                                 <action selector="buttonTapped:" destination="xjr-Lq-h4M" id="IPE-f4-CU6"/>
                             </connections>
@@ -846,8 +846,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Keypad" width="30" height="30"/>
         <image name="List" width="30" height="30"/>
+        <image name="Menu" width="30" height="30"/>
         <image name="QRIcon" width="30" height="30"/>
         <image name="Shop" width="30" height="30"/>
         <image name="StarIcon" width="256" height="249"/>
