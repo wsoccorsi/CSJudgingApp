@@ -678,6 +678,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-LF-1BZ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Kts-w4-J8b"/>
+                                </constraints>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OcL-bf-UxN">
                                 <rect key="frame" x="8" y="322" width="359" height="175"/>
                                 <subviews>
@@ -778,24 +784,18 @@
                                     <constraint firstItem="j0E-WN-y0S" firstAttribute="centerX" secondItem="2rj-fF-v75" secondAttribute="centerX" id="zcZ-8g-PCA"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-LF-1BZ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="Kts-w4-J8b"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="top" secondItem="Hh9-GH-Oad" secondAttribute="top" id="C0R-Vp-Dr3"/>
                             <constraint firstItem="WWK-LF-1BZ" firstAttribute="top" secondItem="Hh9-GH-Oad" secondAttribute="top" id="Crf-xx-R4S"/>
-                            <constraint firstItem="OcL-bf-UxN" firstAttribute="leading" secondItem="2rj-fF-v75" secondAttribute="trailing" constant="8" id="DL5-Mv-s6k"/>
+                            <constraint firstItem="OcL-bf-UxN" firstAttribute="leading" secondItem="xNf-uZ-naU" secondAttribute="leading" constant="8" id="DL5-Mv-s6k"/>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="leading" secondItem="Hh9-GH-Oad" secondAttribute="leading" constant="-375" id="GRX-c6-cyb"/>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="bottom" secondItem="Hh9-GH-Oad" secondAttribute="bottom" id="deP-BG-5Be"/>
                             <constraint firstItem="WWK-LF-1BZ" firstAttribute="trailing" secondItem="Hh9-GH-Oad" secondAttribute="trailing" id="eM9-EC-eg7"/>
                             <constraint firstAttribute="trailing" secondItem="OcL-bf-UxN" secondAttribute="trailing" constant="8" id="lL1-pr-aHq"/>
                             <constraint firstItem="OcL-bf-UxN" firstAttribute="top" secondItem="WWK-LF-1BZ" secondAttribute="bottom" constant="8" id="sQS-Xx-VRI"/>
-                            <constraint firstItem="WWK-LF-1BZ" firstAttribute="leading" secondItem="2rj-fF-v75" secondAttribute="trailing" id="vLv-ia-LEv"/>
+                            <constraint firstItem="WWK-LF-1BZ" firstAttribute="leading" secondItem="xNf-uZ-naU" secondAttribute="leading" id="vLv-ia-LEv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hh9-GH-Oad"/>
                     </view>
