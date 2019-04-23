@@ -114,7 +114,7 @@
                                 <rect key="frame" x="11" y="0.0" width="355" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="120" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-a0-dza">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="390"/>
+                                        <rect key="frame" x="20" y="20" width="355" height="390"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-VL-eMR">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="26.5"/>
@@ -234,10 +234,10 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Bv5-a0-dza" firstAttribute="top" secondItem="I5Z-we-mg0" secondAttribute="top" id="6xD-D6-WCq"/>
+                                    <constraint firstItem="Bv5-a0-dza" firstAttribute="top" secondItem="I5Z-we-mg0" secondAttribute="top" constant="20" symbolic="YES" id="6xD-D6-WCq"/>
                                     <constraint firstAttribute="bottom" secondItem="Bv5-a0-dza" secondAttribute="bottom" id="EsV-LW-LdD"/>
                                     <constraint firstAttribute="width" constant="365" id="Nrr-MC-Wjc"/>
-                                    <constraint firstItem="Bv5-a0-dza" firstAttribute="leading" secondItem="I5Z-we-mg0" secondAttribute="leading" id="clF-AQ-BxN"/>
+                                    <constraint firstItem="Bv5-a0-dza" firstAttribute="leading" secondItem="I5Z-we-mg0" secondAttribute="leading" constant="20" id="clF-AQ-BxN"/>
                                     <constraint firstAttribute="trailing" secondItem="Bv5-a0-dza" secondAttribute="trailing" id="dWR-Uh-zVk"/>
                                 </constraints>
                             </scrollView>
@@ -850,10 +850,10 @@
         <image name="List" width="30" height="30"/>
         <image name="QRIcon" width="30" height="30"/>
         <image name="Shop" width="30" height="30"/>
-        <image name="StarIcon" width="491.51998901367188" height="478.07998657226562"/>
-        <image name="courses" width="25" height="26"/>
-        <image name="location" width="27" height="29"/>
-        <image name="play" width="22" height="21"/>
+        <image name="StarIcon" width="256" height="249"/>
+        <image name="courses" width="50" height="52"/>
+        <image name="location" width="54" height="58"/>
+        <image name="play" width="44" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nAS-4H-LfU"/>
