@@ -97,3 +97,41 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
         return .Failure(Error)
     }
 }
+    
+    func ExtractProject(from data: Data) -> ProjectsResult {
+        
+        do
+        {
+//            let s = String(data: data, encoding: String.Encoding.utf8) as String!
+//            print(s)
+            let JSONObject = try JSONSerialization.jsonObject(with: data, options:.allowFragments)
+            print("\n\n\n\n\n\n\n\n22\n\n\n\n\n\\n")
+            guard
+                let Proj = JSONObject as? [AnyHashable:Any]
+                else
+            {
+                return .Failure(WebError.InvalidJSON)
+            }
+                let Name = Proj["name"]! as? String
+                let Id = Proj["id"]! as? Int
+                let Cat = Proj["category"]! as? String
+                let Desc = Proj["description"]! as? String
+                let Booth = Proj["boothNumber"] as? String
+                let Time = Proj["time"] as? String
+                let Student = Proj["students"] as? String
+                let Courses = Proj["courses"] as? String
+                let Side = Proj["boothSide"] as? String
+                
+                let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!)
+                
+            
+            
+            print("\n\n\n\n\n\n\n\n0\n\n\n\n\n\\n")
+            return .Success([NewProject])
+        }
+        catch let Error
+        {
+            print("\n\n\n\n\n\n\n\n1\n\n\n\n\n\\n")
+            return .Failure(Error)
+        }
+    }

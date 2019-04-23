@@ -2,8 +2,6 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
- 
-    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var devLabel: UILabel!
@@ -51,6 +49,26 @@ class DetailsViewController: UIViewController {
 
     }
     
+    @IBAction func buttonTapped(_ sender: Any) {
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        switch segue.identifier
+        {
+            case "showJudging"?:
+            
+                print("")
+            
+                // let JudgeViewController = segue.destination as! JudgeViewController
+                
+                // JudgeViewController.Project = Project
+            
+        default:
+            preconditionFailure("Unexpected Segue Identifier.")
+        }
+    }
+    
+}
     
 

@@ -150,6 +150,16 @@ class WebAPI {
         return ExtractProjects(from: json)
     }
     
+    private func ProcessSingleRequest(data: Data?, error: Error?) -> ProjectsResult {
+        
+        guard
+            let json = data
+            else {
+                return .Failure(error!)
+        }
+        
+        return ExtractProject(from: json)
+    }
     //=====================================================================
     
     private func ProcessHomeScreenRequest(data: Data?, error: Error?) -> HomeScreenResult {
@@ -206,7 +216,6 @@ class WebAPI {
         {
             
             let url = myProjectsURL
-            
             var request = URLRequest(url: url)
             
             request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
@@ -231,9 +240,40 @@ class WebAPI {
             print("FetchMyProjectsFromWeb: No Bearer Token")
         }
     }
-    
-    //=====================================================================
+    //---------------------------------------------------------------------
+    //---------------------------------------------------------------------
+    func GetQRProject(completion: @escaping (ProjectsResult) -> Void ,link:String) {
         
+        if(BearerToken != nil)
+        {
+            let components = URLComponents(string: link)!
+            
+            let url = components.url!
+            var request = URLRequest(url: url)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
+                let result = self.ProcessSingleRequest(data: data, error: error)
+                
+                OperationQueue.main.addOperation
+                    {
+                        
+                        completion(result)
+                }
+            })
+            
+            task.resume()
+        }
+        else
+        {
+            print("FetchMyProjectsFromWeb: No Bearer Token")
+        }
+    }
+    //=====================================================================
+    
     func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void) {
         
         if(BearerToken != nil)
@@ -258,11 +298,12 @@ class WebAPI {
                 }
             })
             
-            task.resume()            
+            task.resume()
         }
         else
         {
             print("FetchHomeScreenFromWeb: No Bearer Token")
         }
     }
+    
 }
