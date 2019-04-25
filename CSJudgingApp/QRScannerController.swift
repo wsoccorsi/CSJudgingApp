@@ -105,17 +105,17 @@ class QRScannerController: UIViewController {
     //Helper methods
     
     func launchApp(decodedURL: String) {
-        
+        //captureSession.startRunning()
         if presentedViewController != nil {
             return
         }
-        
+        captureSession.stopRunning()
         //here is where URL is stored
        // if let url = URL(string: decodedURL) {
             print(decodedURL)
             //let API = WebAPI()
             API.GetQRProject(completion: segueTableView,link:decodedURL)
-            
+        
             
             
         //}
@@ -123,14 +123,20 @@ class QRScannerController: UIViewController {
         
         
     }
-    func segueTableView(projectsResult: ProjectsResult) {
+    func back(sender: UIBarButtonItem) {
         
+        //captureSession.startRunning()
+    }
+    func segueTableView(projectsResult: ProjectsResult) {
+        captureSession.startRunning()
         switch projectsResult
         {
         case let .Success(projects):
             
             ProjectStore.Projects = projects
+            
             performSegue(withIdentifier: "mySegueID", sender: self)
+           
             
         case let .Failure(error):
             
@@ -147,6 +153,7 @@ class QRScannerController: UIViewController {
             
             let DetailsViewController = segue.destination as! DetailsViewController
             DetailsViewController.Project = p
+            DetailsViewController.API = API
             
             
         }

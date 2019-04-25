@@ -26,6 +26,16 @@ class JudgingViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+//        if(API.isLoggedIn)
+//        {
+//            let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CustomCell
+//            cell.nameLabel.text = "Loading..."
+//        }
+//        else
+//        {
+//            let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CustomCell
+//            cell.nameLabel.text = "Sign In To View Projects"
+//        }
         API.FetchMyProjectsFromWeb(completion: updateTableView)
     }
     
@@ -42,15 +52,30 @@ class JudgingViewController: UITableViewController {
             case let .Failure(error):
             
                 print("Error Fetching Projects: \(error)")
+                let empty: [Project] = []
+                ProjectStore.Projects = empty
+                self.tableView.reloadData()
         }
     }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (ProjectStore.Projects.count == 0)
+        {
+            return 1
+        }
+        
         return ProjectStore.Projects.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        if (ProjectStore.Projects.count == 0)
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NotLoggedInCell", for: indexPath) as! CustomCell
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none;
+            return cell
+        }
+        
         let project = ProjectStore.Projects[indexPath.row]
         
         let cat = String(project.cat.split(separator: "(").first!)
@@ -94,6 +119,7 @@ class JudgingViewController: UITableViewController {
                     let DetailsViewController = segue.destination as! DetailsViewController
                 
                     DetailsViewController.Project = p
+                    DetailsViewController.API = API
                 }
             
             default:

@@ -66,18 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (Data.userDataExists()) {
             
-            API.Username = Data.getUsernameFromCore()
-            API.Password = Data.getPasswordFromCore()
-            
             if (false) { // Data.isTokenOld()
-                // Generate New Token
+                API.LogIn(username: Data.getUsernameFromCore(), password: Data.getPasswordFromCore(), completion: HomeScreenController.InitializeStatus)
             }
             else {
+                API.Username = Data.getUsernameFromCore()
+                API.Password = Data.getPasswordFromCore()
                 API.BearerToken = Data.getTokenFromCore()
+                HomeScreenController.InitializeStatus(LogInStatus: "SuccessfulLogIn")
             }
             
             ProjectsController.viewDidLoad()
             JudgingController.viewDidLoad()
+            //HomeScreenController.viewDidLoad()
         }
         else {
             print("No Core Data: Login Required")

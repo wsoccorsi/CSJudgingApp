@@ -8,6 +8,7 @@ enum EndPoint: String {
     case allProjects = "cs-judge/v1/projects/year/2018"
     case  myProjects = "cs-judge/v1/users/my-judging-projects/current"
     case    homePage = "cs-judge/v1/fairs/current"
+    case submitJudge = "cs-judge/v1/users/submit-judgement"
 }
 
 enum TokenResult {
@@ -39,8 +40,13 @@ class WebAPI {
     var myProjectsURL: URL {
         return CreateURL(endpoint: .myProjects, parameters: nil)
     }
+    
     var homePageURL: URL{
         return CreateURL(endpoint: .homePage, parameters: nil)
+    }
+    
+    var submitURL: URL{
+        return CreateURL(endpoint: .submitJudge, parameters: nil)
     }
     
     //=====================================================================
@@ -65,7 +71,7 @@ class WebAPI {
     
     //=====================================================================
     
-    public func LogIn(username: String, password: String) -> Bool
+    public func LogIn(username: String, password: String, completion: @escaping (String) -> Void)
     {
         Username = username
         Password = password
@@ -88,10 +94,12 @@ class WebAPI {
                 if(HTTPResponse.statusCode != 200)
                 {
                     self.LogInSuccessful = false
+                    self.isLoggedIn = false
                 }
                 else
                 {
                     self.LogInSuccessful = true
+                    self.isLoggedIn = true
                 }
             }
             
@@ -101,25 +109,43 @@ class WebAPI {
             
                 OperationQueue.main.addOperation
                 {
-                        switch result
-                        {
-                            case let .Success(token):
-                            
-                                self.BearerToken = token
-                            
-                                self.Data.updateEntity(Username: self.Username!, Password: self.Password!, Token: token, Date: Date())
-                            
-                            case let .Failure(error):
-                                print("Error Getting Token: \(error)")
-                        }
+                    switch result
+                    {
+                        case let .Success(token):
+                        
+                            self.BearerToken = token
+                        
+                            self.Data.updateEntity(Username: self.Username!, Password: self.Password!, Token: token, Date: Date())
+                        
+                            completion("SuccessfulLogIn")
+                        
+                        case let .Failure(error):
+                            print("Error Getting Token: \(error)")
+                            completion("FailedLogIn")
+                    }
                 }
             }
+            else
+            {
+                OperationQueue.main.addOperation
+                {
+                    completion("FailedLogIn")
+                }
+            }
+            
         })
         
         task.resume()
         
-        print(LogInSuccessful)
-        return LogInSuccessful
+    
+    }
+    
+    public func LogOut()
+    {
+        isLoggedIn = false        
+        Username = nil
+        Password = nil
+        BearerToken = nil
     }
     
     //=====================================================================
@@ -205,6 +231,8 @@ class WebAPI {
         else
         {
             print("FetchAllProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     
@@ -238,6 +266,8 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     //---------------------------------------------------------------------
@@ -270,8 +300,11 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
+    
     //=====================================================================
     
     func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void) {
@@ -303,6 +336,61 @@ class WebAPI {
         else
         {
             print("FetchHomeScreenFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
+        }
+    }
+    
+    //=====================================================================
+    
+    func SubmitJudgement(ProjectId: Int, FuncScore: Int, DesgScore : Int, PresScore: Int) {
+        
+        if(BearerToken != nil)
+        {
+            let url = submitURL
+            
+            var request = URLRequest(url: url)
+            
+            let parameters: String =
+                                    "project_id=" + String(ProjectId) + "&" +
+                                    "criterion_0_criteria=" + "Functionality" + "&" +
+                                    "criterion_0_score=" + String(FuncScore)  + "&" +
+                                    "criterion_1_criteria=" + "Design" + "&" +
+                                    "criterion_1_score=" + String(DesgScore) + "&" +
+                                    "criterion_2_criteria=" + "Presentation" + "&" +
+                                    "criterion_2_score=" + String(PresScore)
+            
+            request.httpMethod = "POST"
+            request.httpBody = parameters.data(using: .ascii)
+            
+            request.addValue("Bearer " + self.BearerToken!, forHTTPHeaderField: "Authorization")
+            
+            let task = self.session.dataTask(with: request, completionHandler:
+            {
+                (data, response, error) -> Void in
+                
+                if let HTTPResponse = response as? HTTPURLResponse
+                {
+                    if(HTTPResponse.statusCode != 200) {
+                        print("Failed Submit")
+                    }
+                    else {
+                        print("Successful Submit")
+                    }
+                }
+                
+                OperationQueue.main.addOperation
+                {
+                        
+                    //completion(result)
+                }
+            })
+            
+            task.resume()
+        }
+        else
+        {
+            print("SubmitJudgment: No Bearer Token")
         }
     }
     

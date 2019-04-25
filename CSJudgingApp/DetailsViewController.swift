@@ -13,6 +13,7 @@ class DetailsViewController: UIViewController {
     
     
     var Project: Project!
+    var API: WebAPI!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -65,9 +66,10 @@ class DetailsViewController: UIViewController {
             
                 print("")
             
-                // let JudgeViewController = segue.destination as! JudgeViewController
+                let JudgeViewController = segue.destination as! JudgeViewController
                 
-                // JudgeViewController.Project = Project
+                JudgeViewController.Project = Project
+                JudgeViewController.API = API
             
         default:
             preconditionFailure("Unexpected Segue Identifier.")
