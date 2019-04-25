@@ -261,6 +261,7 @@
                         <outlet property="courseLabel" destination="pYf-Sc-0tW" id="A8S-Yf-nsK"/>
                         <outlet property="descLabel" destination="9k4-xW-uuc" id="ZaR-Ch-3iT"/>
                         <outlet property="devLabel" destination="axq-u5-nmk" id="yJY-Hu-uqM"/>
+                        <outlet property="judgeJudy" destination="Ejj-70-87Y" id="r6A-NH-pNr"/>
                         <outlet property="locLabel" destination="4i8-9W-bTT" id="acj-6M-qkn"/>
                         <outlet property="nameLabel" destination="3d0-VL-eMR" id="qg4-6c-csA"/>
                         <outlet property="presLabel" destination="My2-tp-6J2" id="6ru-N5-b38"/>

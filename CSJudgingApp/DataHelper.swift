@@ -18,6 +18,9 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
         
         for Proj in ProjectList
         {
+            var Functionality = -1;
+            var Design = -1;
+            var Presentation = -1;
             let Name = Proj["name"]! as? String
             let Id = Proj["id"]! as? Int
             let Cat = Proj["category"]! as? String
@@ -27,8 +30,34 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             let Student = Proj["students"] as? String
             let Courses = Proj["courses"] as? String
             let Side = Proj["boothSide"] as? String
+            let Judge = Proj["judging_info"] as? [(Any)]
+            let areJudge = Proj["current_user_judging"] as? Bool
+            if (areJudge == true){
+                var Criteria = Judge?[0] as? [AnyHashable:Any]
+                var temp = Criteria?["judge_score"] as? String
+                if let temp2 = temp
+                {
+                    Functionality = (temp2 as NSString).integerValue
+                    //print(temp2)
+                }
+                Criteria = Judge?[1] as? [AnyHashable:Any]
+                temp = Criteria?["judge_score"] as? String
+                if let temp2 = temp
+                {
+                    Design = (temp2 as NSString).integerValue
+                    //print(temp2)
+                }
+                Criteria = Judge?[2] as? [AnyHashable:Any]
+                temp = Criteria?["judge_score"] as? String
+                if let temp2 = temp
+                {
+                    Presentation = (temp2 as NSString).integerValue
+                    //print(temp2)
+                }
+
+            }
             
-            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!)
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: Judge!, areJudged: areJudge!, functionality: Functionality, design: Design, presentation: Presentation)
             
             ProjectsReturn.append(NewProject)
         }
@@ -112,6 +141,9 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
             {
                 return .Failure(WebError.InvalidJSON)
             }
+                var Functionality = -1;
+                var Design = -1;
+                var Presentation = -1;
                 let Name = Proj["name"]! as? String
                 let Id = Proj["id"]! as? Int
                 let Cat = Proj["category"]! as? String
@@ -121,8 +153,15 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
                 let Student = Proj["students"] as? String
                 let Courses = Proj["courses"] as? String
                 let Side = Proj["boothSide"] as? String
+                let Judge = Proj["judging_info"] as? [(Any)]
+                let areJudge = Proj["current_user_judging"] as? Bool
+                if (areJudge == true){
+                let Criteria = Judge?[1] as! String
+                    print("Judge Score: " + Criteria);
+                }
+
                 
-                let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!)
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: [Judge!], areJudged: areJudge!, functionality: Functionality, design: Design, presentation: Presentation)
                 
             
             

@@ -9,6 +9,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var catLabel: UILabel!
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var presLabel: UILabel!
+    @IBOutlet weak var judgeJudy: UIButton!
+    
     
     var Project: Project!
     
@@ -24,7 +26,10 @@ class DetailsViewController: UIViewController {
         courseLabel.text = Project.courses.joined()
         courseLabel.numberOfLines = 0
         
-      
+//        https://stackoverflow.com/questions/26961274/how-can-i-make-a-button-have-a-rounded-border-in-swift
+        judgeJudy.layer.cornerRadius = 50
+        judgeJudy.layer.borderWidth = 1
+        judgeJudy.layer.borderColor = UIColor.black.cgColor
         
         super.viewWillAppear(animated)
         nameLabel.numberOfLines=0

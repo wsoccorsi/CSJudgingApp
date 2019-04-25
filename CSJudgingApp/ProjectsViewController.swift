@@ -68,7 +68,7 @@ class ProjectsViewController: UITableViewController
         
         var cell : CustomCell
         
-        if(cat.contains("Advanced")) {
+        if(project.areJudged) {
             cell = tableView.dequeueReusableCell(withIdentifier: "StarCell", for: indexPath) as! CustomCell
         }
         else {
