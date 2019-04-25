@@ -133,6 +133,7 @@ class ProjectsViewController: UITableViewController
                     let DetailsViewController = segue.destination as! DetailsViewController
                 
                     DetailsViewController.Project = p
+                    DetailsViewController.API = API
                 }
             
             default:

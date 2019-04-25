@@ -8,7 +8,7 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var F4Button: UIButton!
     @IBOutlet weak var F5Button: UIButton!
     var FuncButtons : [UIButton]!
-    var FuncScore : Int?
+    var FuncScore : Int? = 0
     
     @IBOutlet weak var D1Button: UIButton!
     @IBOutlet weak var D2Button: UIButton!
@@ -16,7 +16,7 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var D4Button: UIButton!
     @IBOutlet weak var D5Button: UIButton!
     var DesgButtons : [UIButton]!
-    var DesgScore : Int?
+    var DesgScore : Int? = 0
     
     @IBOutlet weak var P1Button: UIButton!
     @IBOutlet weak var P2Button: UIButton!
@@ -24,10 +24,11 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var P4Button: UIButton!
     @IBOutlet weak var P5Button: UIButton!
     var PresButtons : [UIButton]!
-    var PresScore : Int?
+    var PresScore : Int? = 0
     
     @IBOutlet weak var ProjTitle: UILabel!    
     
+    var API: WebAPI!
     var Project: Project!
     
     override func viewDidLoad()
@@ -122,4 +123,12 @@ class JudgeViewController: UIViewController
         FillButtons(tap: 5, buttons: PresButtons)
         PresScore = 5
     }
+    
+    @IBAction func SubmitJudgement(_ sender: Any) {
+        
+        API.SubmitJudgement(ProjectId: Project.id, FuncScore: FuncScore!,
+                            DesgScore: DesgScore!, PresScore: PresScore!)
+        
+    }
+    
 }

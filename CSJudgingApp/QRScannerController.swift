@@ -153,6 +153,7 @@ class QRScannerController: UIViewController {
             
             let DetailsViewController = segue.destination as! DetailsViewController
             DetailsViewController.Project = p
+            DetailsViewController.API = API
             
             
         }
