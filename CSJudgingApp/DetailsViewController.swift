@@ -60,9 +60,9 @@ class DetailsViewController: UIViewController {
             
                 print("")
             
-                // let JudgeViewController = segue.destination as! JudgeViewController
+                let JudgeViewController = segue.destination as! JudgeViewController
                 
-                // JudgeViewController.Project = Project
+                JudgeViewController.Project = Project
             
         default:
             preconditionFailure("Unexpected Segue Identifier.")

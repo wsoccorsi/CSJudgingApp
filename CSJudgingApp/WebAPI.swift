@@ -65,7 +65,7 @@ class WebAPI {
     
     //=====================================================================
     
-    public func LogIn(username: String, password: String) -> Bool
+    public func LogIn(username: String, password: String, completion: @escaping (String) -> Void)
     {
         Username = username
         Password = password
@@ -88,10 +88,12 @@ class WebAPI {
                 if(HTTPResponse.statusCode != 200)
                 {
                     self.LogInSuccessful = false
+                    self.isLoggedIn = false
                 }
                 else
                 {
                     self.LogInSuccessful = true
+                    self.isLoggedIn = true
                 }
             }
             
@@ -101,25 +103,43 @@ class WebAPI {
             
                 OperationQueue.main.addOperation
                 {
-                        switch result
-                        {
-                            case let .Success(token):
-                            
-                                self.BearerToken = token
-                            
-                                self.Data.updateEntity(Username: self.Username!, Password: self.Password!, Token: token, Date: Date())
-                            
-                            case let .Failure(error):
-                                print("Error Getting Token: \(error)")
-                        }
+                    switch result
+                    {
+                        case let .Success(token):
+                        
+                            self.BearerToken = token
+                        
+                            self.Data.updateEntity(Username: self.Username!, Password: self.Password!, Token: token, Date: Date())
+                        
+                            completion("SuccessfulLogIn")
+                        
+                        case let .Failure(error):
+                            print("Error Getting Token: \(error)")
+                            completion("FailedLogIn")
+                    }
                 }
             }
+            else
+            {
+                OperationQueue.main.addOperation
+                {
+                    completion("FailedLogIn")
+                }
+            }
+            
         })
         
         task.resume()
         
-        print(LogInSuccessful)
-        return LogInSuccessful
+    
+    }
+    
+    public func LogOut()
+    {
+        isLoggedIn = false        
+        Username = nil
+        Password = nil
+        BearerToken = nil
     }
     
     //=====================================================================
@@ -205,6 +225,8 @@ class WebAPI {
         else
         {
             print("FetchAllProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     
@@ -238,6 +260,8 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     //---------------------------------------------------------------------
@@ -270,6 +294,8 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     //=====================================================================
@@ -303,6 +329,8 @@ class WebAPI {
         else
         {
             print("FetchHomeScreenFromWeb: No Bearer Token")
+            let error = NSError(domain:"", code:400, userInfo:nil)
+            completion(.Failure(error))
         }
     }
     
