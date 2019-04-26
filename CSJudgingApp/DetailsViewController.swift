@@ -9,11 +9,10 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var catLabel: UILabel!
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var presLabel: UILabel!
-    @IBOutlet weak var judgeJudy: UIButton!
-    
-    @IBOutlet weak var JudgeButtonCenter: NSLayoutConstraint!
+    //@IBOutlet weak var judgeJudy: UIButton!
     
     @IBOutlet weak var JudgeButton: UIButton!
+    
     
     var Project: Project!
     var API: WebAPI!
@@ -29,11 +28,6 @@ class DetailsViewController: UIViewController {
         courseLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         courseLabel.text = Project.courses.joined()
         courseLabel.numberOfLines = 0
-        
-//        https://stackoverflow.com/questions/26961274/how-can-i-make-a-button-have-a-rounded-border-in-swift
-        judgeJudy.layer.cornerRadius = 50
-        judgeJudy.layer.borderWidth = 1
-        judgeJudy.layer.borderColor = UIColor.black.cgColor
         
         super.viewWillAppear(animated)
         nameLabel.numberOfLines=0
@@ -59,10 +53,10 @@ class DetailsViewController: UIViewController {
         if(Project.areJudged) {
             JudgeButton.isHidden = false
             if(Project.hasJudged) {
-                //JudgeButton.titleLabel?.text = "Revise"
+                JudgeButton.setTitle("Change Judgment", for: UIControl.State.normal)
             }
             else {
-                //JudgeButton.titleLabel?.text = "Judge Now"
+                JudgeButton.setTitle("Judge Now", for: UIControl.State.normal)
             }
         }
         else {

@@ -8,7 +8,7 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var F4Button: UIButton!
     @IBOutlet weak var F5Button: UIButton!
     var FuncButtons : [UIButton]!
-    var FuncScore : Int? = 0
+    var FuncScore : Int = 0
     
     @IBOutlet weak var D1Button: UIButton!
     @IBOutlet weak var D2Button: UIButton!
@@ -16,7 +16,7 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var D4Button: UIButton!
     @IBOutlet weak var D5Button: UIButton!
     var DesgButtons : [UIButton]!
-    var DesgScore : Int? = 0
+    var DesgScore : Int = 0
     
     @IBOutlet weak var P1Button: UIButton!
     @IBOutlet weak var P2Button: UIButton!
@@ -24,7 +24,7 @@ class JudgeViewController: UIViewController
     @IBOutlet weak var P4Button: UIButton!
     @IBOutlet weak var P5Button: UIButton!
     var PresButtons : [UIButton]!
-    var PresScore : Int? = 0
+    var PresScore : Int = 0
     
     @IBOutlet weak var ProjTitle: UILabel!    
     @IBOutlet weak var ResultLabel: UILabel!
@@ -148,8 +148,13 @@ class JudgeViewController: UIViewController
         ResultLabel.text = "Submitting..."
         ResultLabel.backgroundColor = UIColor.clear
         
-        API.SubmitJudgement(ProjectId: Project.id, FuncScore: FuncScore!,
-                            DesgScore: DesgScore!, PresScore: PresScore!,
+        Project.functionality = FuncScore
+        Project.design = DesgScore
+        Project.presentation = PresScore
+        Project.hasJudged = true
+        
+        API.SubmitJudgement(ProjectId: Project.id, FuncScore: FuncScore,
+                            DesgScore: DesgScore, PresScore: PresScore,
             completion: showResult)
     }
     

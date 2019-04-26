@@ -106,7 +106,7 @@
         <scene sceneID="vg0-js-KRm">
             <objects>
                 <viewController id="zYk-nD-yjP" customClass="DetailsViewController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jkt-7C-33Z">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="jkt-7C-33Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -114,7 +114,7 @@
                                 <rect key="frame" x="10" y="0.0" width="365" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="redraw" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="120" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-a0-dza">
-                                        <rect key="frame" x="20" y="20.000000000000028" width="355" height="508.66666666666674"/>
+                                        <rect key="frame" x="20" y="20" width="355" height="394.66666666666669"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3d0-VL-eMR">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="26.333333333333332"/>
@@ -218,21 +218,22 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejj-70-87Y">
-                                                <rect key="frame" x="0.0" y="358.66666666666669" width="355" height="150"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fg7-V6-t20">
+                                                <rect key="frame" x="0.0" y="358.66666666666669" width="355" height="36"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="38l-zM-Jdc"/>
+                                                    <constraint firstAttribute="width" constant="355" id="t3D-hO-2Qt"/>
                                                 </constraints>
-                                                <state key="normal" title="JUDGE" image="judgeIcon "/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Judge">
+                                                    <color key="titleColor" red="0.0119239362" green="0.47466540340000002" blue="0.98470920319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="buttonTapped:" destination="zYk-nD-yjP" eventType="touchUpInside" id="fOm-Ya-paZ"/>
-                                                    <segue destination="AZA-Qh-8UY" kind="show" identifier="showJudging" id="MKD-mR-HSp"/>
+                                                    <segue destination="AZA-Qh-8UY" kind="show" identifier="showJudging" id="mGi-5s-dMA"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="355" id="0R3-jU-jZj"/>
-                                            <constraint firstItem="Ejj-70-87Y" firstAttribute="centerX" secondItem="Bv5-a0-dza" secondAttribute="centerX" id="drK-Af-aCe"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -257,13 +258,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="ijx-yA-A5d"/>
                     <connections>
-                        <outlet property="JudgeButton" destination="Ejj-70-87Y" id="vXY-qm-FQZ"/>
-                        <outlet property="JudgeButtonCenter" destination="drK-Af-aCe" id="fVY-uF-rWi"/>
+                        <outlet property="JudgeButton" destination="fg7-V6-t20" id="aY2-kz-I7o"/>
                         <outlet property="catLabel" destination="EFg-B8-RhB" id="6IG-nt-eyJ"/>
                         <outlet property="courseLabel" destination="pYf-Sc-0tW" id="A8S-Yf-nsK"/>
                         <outlet property="descLabel" destination="9k4-xW-uuc" id="ZaR-Ch-3iT"/>
                         <outlet property="devLabel" destination="axq-u5-nmk" id="yJY-Hu-uqM"/>
-                        <outlet property="judgeJudy" destination="Ejj-70-87Y" id="r6A-NH-pNr"/>
                         <outlet property="locLabel" destination="4i8-9W-bTT" id="acj-6M-qkn"/>
                         <outlet property="nameLabel" destination="3d0-VL-eMR" id="qg4-6c-csA"/>
                         <outlet property="presLabel" destination="My2-tp-6J2" id="6ru-N5-b38"/>
@@ -670,8 +669,60 @@
                                     <segue destination="zYk-nD-yjP" kind="show" identifier="showDetails" id="b7d-Q6-Xjr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoStarCell" rowHeight="203" id="zLk-sl-QdQ" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NeedsJudgeCell" rowHeight="203" id="rFZ-hg-RH5" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="231" width="414" height="203"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rFZ-hg-RH5" id="1e3-f8-AOu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="202.66666666666666"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx6-Xf-3Zy">
+                                            <rect key="frame" x="28" y="11.000000000000002" width="323" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6se-pT-oE7">
+                                            <rect key="frame" x="28" y="42.666666666666671" width="70.333333333333329" height="141.33333333333331"/>
+                                            <color key="backgroundColor" red="0.98039215690000003" green="0.83137254900000002" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vM9-Pp-l5r">
+                                            <rect key="frame" x="361" y="11" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="25" id="gKd-rl-Reh"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="lvo-YU-M7v"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vM9-Pp-l5r" secondAttribute="trailing" constant="8" id="523-Sj-oAL"/>
+                                        <constraint firstItem="vM9-Pp-l5r" firstAttribute="leading" secondItem="nx6-Xf-3Zy" secondAttribute="trailing" constant="10" id="AhM-ru-LOb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6se-pT-oE7" secondAttribute="bottom" constant="8" id="E2z-6O-SyL"/>
+                                        <constraint firstItem="nx6-Xf-3Zy" firstAttribute="top" secondItem="1e3-f8-AOu" secondAttribute="topMargin" id="T2V-qk-Cg2"/>
+                                        <constraint firstItem="6se-pT-oE7" firstAttribute="leading" secondItem="1e3-f8-AOu" secondAttribute="leadingMargin" constant="8" id="cyr-aY-EmW"/>
+                                        <constraint firstItem="vM9-Pp-l5r" firstAttribute="top" secondItem="1e3-f8-AOu" secondAttribute="topMargin" id="g1K-J5-mUM"/>
+                                        <constraint firstItem="6se-pT-oE7" firstAttribute="top" secondItem="nx6-Xf-3Zy" secondAttribute="bottom" constant="10" id="pQD-bw-Ue9"/>
+                                        <constraint firstItem="nx6-Xf-3Zy" firstAttribute="leading" secondItem="1e3-f8-AOu" secondAttribute="leadingMargin" constant="8" id="y4x-SC-WyD"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="catLabel" destination="6se-pT-oE7" id="uqo-Oi-KvS"/>
+                                    <outlet property="nameLabel" destination="nx6-Xf-3Zy" id="T8M-XY-RGE"/>
+                                    <outlet property="starImage" destination="vM9-Pp-l5r" id="h0A-eJ-cJk"/>
+                                    <segue destination="zYk-nD-yjP" kind="show" identifier="showDetails" id="3Im-29-DJB"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoStarCell" rowHeight="203" id="zLk-sl-QdQ" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="434" width="414" height="203"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zLk-sl-QdQ" id="GZy-Ba-QFE">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="202.66666666666666"/>
@@ -723,7 +774,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotLoggedInCell" id="ONl-DT-0zn" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="434" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="637" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONl-DT-0zn" id="ji7-KK-vMt">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -838,8 +889,60 @@
                                     <segue destination="zYk-nD-yjP" kind="show" identifier="showDetails" id="1YR-Wt-1tt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoStarCell" rowHeight="203" id="KHG-yd-QFm" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NeedsJudgeCell" rowHeight="203" id="z5I-96-Lfq" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="231" width="414" height="203"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z5I-96-Lfq" id="sri-ld-HGe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="202.66666666666666"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2v-GF-369">
+                                            <rect key="frame" x="28" y="11.000000000000002" width="323" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmZ-xy-Dlv">
+                                            <rect key="frame" x="28" y="42.666666666666671" width="70.333333333333329" height="141.33333333333331"/>
+                                            <color key="backgroundColor" red="0.98039215690000003" green="0.83137254900000002" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="QZM-Rg-dK7">
+                                            <rect key="frame" x="361" y="11" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="0se-qA-exD"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="25" id="XJW-DI-82Q"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GmZ-xy-Dlv" firstAttribute="leading" secondItem="sri-ld-HGe" secondAttribute="leadingMargin" constant="8" id="29I-4j-ZCD"/>
+                                        <constraint firstItem="QZM-Rg-dK7" firstAttribute="top" secondItem="sri-ld-HGe" secondAttribute="topMargin" id="4pz-f7-gdt"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="GmZ-xy-Dlv" secondAttribute="bottom" constant="8" id="DXt-f2-0MA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="QZM-Rg-dK7" secondAttribute="trailing" constant="8" id="Q6n-ew-AbS"/>
+                                        <constraint firstItem="QZM-Rg-dK7" firstAttribute="leading" secondItem="X2v-GF-369" secondAttribute="trailing" constant="10" id="dt8-CY-vNJ"/>
+                                        <constraint firstItem="GmZ-xy-Dlv" firstAttribute="top" secondItem="X2v-GF-369" secondAttribute="bottom" constant="10" id="jWB-8P-COG"/>
+                                        <constraint firstItem="X2v-GF-369" firstAttribute="leading" secondItem="sri-ld-HGe" secondAttribute="leadingMargin" constant="8" id="p3Y-DO-J6w"/>
+                                        <constraint firstItem="X2v-GF-369" firstAttribute="top" secondItem="sri-ld-HGe" secondAttribute="topMargin" id="sPp-cu-Tqc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="catLabel" destination="GmZ-xy-Dlv" id="s9g-i0-7ON"/>
+                                    <outlet property="nameLabel" destination="X2v-GF-369" id="IX5-w2-fIP"/>
+                                    <outlet property="starImage" destination="QZM-Rg-dK7" id="Pgg-YI-WEx"/>
+                                    <segue destination="zYk-nD-yjP" kind="show" identifier="showDetails" id="MUg-2J-1D0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoStarCell" rowHeight="203" id="KHG-yd-QFm" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="434" width="414" height="203"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KHG-yd-QFm" id="nUx-vX-You">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="202.66666666666666"/>
@@ -891,7 +994,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotLoggedInCell" id="dJa-f8-zGW" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="434" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="637" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dJa-f8-zGW" id="3fo-Ae-iPn">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -1128,11 +1231,10 @@
         <image name="Shop" width="30" height="30"/>
         <image name="StarIcon" width="491.51998901367188" height="478.07998657226562"/>
         <image name="courses" width="25" height="26"/>
-        <image name="judgeIcon " width="1000" height="563"/>
         <image name="location" width="27" height="29"/>
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tOZ-EC-UEa"/>
+        <segue reference="3Im-29-DJB"/>
     </inferredMetricsTieBreakers>
 </document>

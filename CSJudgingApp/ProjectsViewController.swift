@@ -37,16 +37,7 @@ class ProjectsViewController: UITableViewController
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        if(API.isLoggedIn)
-//        {
-//            let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CustomCell
-//            cell.nameLabel.text = "Loading..."
-//        }
-//        else
-//        {
-//            let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as! CustomCell
-//            cell.nameLabel.text = "Sign In To View Projects"
-//        }
+        tableView.reloadData()
         API.FetchAllProjectsFromWeb(completion: updateTableView)
     }
     
@@ -93,10 +84,13 @@ class ProjectsViewController: UITableViewController
         
         var cell : CustomCell
         
-        if(project.areJudged) {
-            cell = tableView.dequeueReusableCell(withIdentifier: "StarCell", for: indexPath) as! CustomCell
-            if(!project.hasJudged) {
-                cell.starImage.alpha = 0.25
+        if(project.areJudged)
+        {
+            if(project.hasJudged) {
+                cell = tableView.dequeueReusableCell(withIdentifier: "StarCell", for: indexPath) as! CustomCell
+            }
+            else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "NeedsJudgeCell", for: indexPath) as! CustomCell
             }
         }
         else {
