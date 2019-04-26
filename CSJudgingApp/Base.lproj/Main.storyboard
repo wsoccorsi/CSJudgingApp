@@ -78,30 +78,6 @@
             </objects>
             <point key="canvasLocation" x="636" y="-466"/>
         </scene>
-        <!--Custom Controller-->
-        <scene sceneID="yI7-kh-t5Q">
-            <objects>
-                <viewController id="dGy-Q7-Qlg" customClass="CustomController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xdf-Hc-JPl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TESTING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNH-YZ-ZvT">
-                                <rect key="frame" x="140" y="239" width="95" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ZDv-qR-vDm"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wV3-I0-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1960.8" y="-927.88605697151434"/>
-        </scene>
         <!--Details View Controller-->
         <scene sceneID="vg0-js-KRm">
             <objects>
