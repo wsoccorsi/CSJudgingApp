@@ -41,10 +41,15 @@ class HomeScreenViewController : UIViewController {
         MenuLead.constant = UIScreen.main.bounds.width * -1
         
         Status.text = ""
-        UsernameCenter.constant = 0
-        PasswordCenter.constant = 0
-        SignInCenter.constant = 0
-        SignOutCenter.constant = 1000
+        //Status.lineBreakMode = .byWordWrapping
+        Username.isHidden = false
+        Password.isHidden = false
+        SignInButton.isHidden = false
+        SignOutButton.isHidden = true
+        
+        Username.autocorrectionType = UITextAutocorrectionType.no
+        Password.autocorrectionType = UITextAutocorrectionType.no
+        Password.isSecureTextEntry = true
         
         updateMenuView(LogInStatus: InitialStatus)
         
@@ -118,24 +123,36 @@ class HomeScreenViewController : UIViewController {
     {
         if(LogInStatus == "SuccessfulLogIn") {
             Status.text = "Logged In As\n" + API.Username!            
-            UsernameCenter.constant = 1000
-            PasswordCenter.constant = 1000
-            SignInCenter.constant = 1000
-            SignOutCenter.constant = 0
+            //UsernameCenter.constant = 1000
+            Username.isHidden = true
+            //PasswordCenter.constant = 1000
+            Password.isHidden = true
+            //SignInCenter.constant = 1000
+            SignInButton.isHidden = true
+            //SignOutCenter.constant = 0
+            SignOutButton.isHidden = false
         }
         if(LogInStatus == "NotLoggedIn") {
             Status.text = ""
-            UsernameCenter.constant = 0
-            PasswordCenter.constant = 0
-            SignInCenter.constant = 0
-            SignOutCenter.constant = 1000
+            //UsernameCenter.constant = 0
+            Username.isHidden = false
+            //PasswordCenter.constant = 0
+            Password.isHidden = false
+            //SignInCenter.constant = 0
+            SignInButton.isHidden = false
+            //SignOutCenter.constant = 1000
+            SignOutButton.isHidden = true
         }
         if(LogInStatus == "FailedLogIn") {
             Status.text = "Incorrect Username or Password"
-            UsernameCenter.constant = 0
-            PasswordCenter.constant = 0
-            SignInCenter.constant = 0
-            SignOutCenter.constant = 1000
+            //UsernameCenter.constant = 0
+            Username.isHidden = false
+            //PasswordCenter.constant = 0
+            Password.isHidden = false
+            //SignInCenter.constant = 0
+            SignInButton.isHidden = false
+            //SignOutCenter.constant = 1000
+            SignOutButton.isHidden = true
         }
         
     }

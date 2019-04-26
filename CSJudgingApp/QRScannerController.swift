@@ -148,7 +148,7 @@ class QRScannerController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "mySegueID"{
+        if segue.identifier == "mySegueID" {
             let p = ProjectStore.Projects[0]
             
             let DetailsViewController = segue.destination as! DetailsViewController
@@ -162,16 +162,6 @@ class QRScannerController: UIViewController {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 

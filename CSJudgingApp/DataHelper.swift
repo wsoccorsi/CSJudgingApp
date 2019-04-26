@@ -32,6 +32,7 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             let Side = Proj["boothSide"] as? String
             let Judge = Proj["judging_info"] as? [(Any)]
             let areJudge = Proj["current_user_judging"] as? Bool
+            let hasJudged = Proj["has_judged"] as? Bool
             if (areJudge == true){
                 var Criteria = Judge?[0] as? [AnyHashable:Any]
                 var temp = Criteria?["judge_score"] as? String
@@ -57,7 +58,7 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
 
             }
             
-            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: Judge!, areJudged: areJudge!, functionality: Functionality, design: Design, presentation: Presentation)
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: Judge!, areJudged: areJudge!, hasJudged: hasJudged!, functionality: Functionality, design: Design, presentation: Presentation)
             
             ProjectsReturn.append(NewProject)
         }
@@ -155,13 +156,14 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
                 let Side = Proj["boothSide"] as? String
                 let Judge = Proj["judging_info"] as? [(Any)]
                 let areJudge = Proj["current_user_judging"] as? Bool
+                let hasJudged = Proj["has_judged"] as? Bool
                 if (areJudge == true){
                 let Criteria = Judge?[1] as! String
                     print("Judge Score: " + Criteria);
                 }
 
                 
-            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: [Judge!], areJudged: areJudge!, functionality: Functionality, design: Design, presentation: Presentation)
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: [Judge!], areJudged: areJudge!, hasJudged: hasJudged!, functionality: Functionality, design: Design, presentation: Presentation)
                 
             
             

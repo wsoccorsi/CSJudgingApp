@@ -82,8 +82,11 @@ class JudgingViewController: UITableViewController {
         
         var cell : CustomCell
         
-        if(cat.contains("Advanced")) {
+        if(project.areJudged) {
             cell = tableView.dequeueReusableCell(withIdentifier: "StarCell", for: indexPath) as! CustomCell
+            if(!project.hasJudged) {
+                cell.starImage.alpha = 0.25
+            }
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: "NoStarCell", for: indexPath) as! CustomCell

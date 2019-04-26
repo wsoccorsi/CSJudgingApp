@@ -343,8 +343,8 @@ class WebAPI {
     
     //=====================================================================
     
-    func SubmitJudgement(ProjectId: Int, FuncScore: Int, DesgScore : Int, PresScore: Int) {
-        
+    func SubmitJudgement(ProjectId: Int, FuncScore: Int, DesgScore : Int, PresScore: Int, completion: @escaping (Bool) -> Void)
+    {        
         if(BearerToken != nil)
         {
             let url = submitURL
@@ -371,18 +371,15 @@ class WebAPI {
                 
                 if let HTTPResponse = response as? HTTPURLResponse
                 {
-                    if(HTTPResponse.statusCode != 200) {
-                        print("Failed Submit")
+                    OperationQueue.main.addOperation
+                    {
+                        if(HTTPResponse.statusCode != 200) {
+                            completion(false)
+                        }
+                        else {
+                            completion(true)
+                        }
                     }
-                    else {
-                        print("Successful Submit")
-                    }
-                }
-                
-                OperationQueue.main.addOperation
-                {
-                        
-                    //completion(result)
                 }
             })
             
@@ -393,5 +390,4 @@ class WebAPI {
             print("SubmitJudgment: No Bearer Token")
         }
     }
-    
 }

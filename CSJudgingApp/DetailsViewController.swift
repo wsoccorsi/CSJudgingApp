@@ -11,13 +11,16 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var presLabel: UILabel!
     @IBOutlet weak var judgeJudy: UIButton!
     
+    @IBOutlet weak var JudgeButtonCenter: NSLayoutConstraint!
+    
+    @IBOutlet weak var JudgeButton: UIButton!
     
     var Project: Project!
     var API: WebAPI!
     
     override func viewWillAppear(_ animated: Bool) {
         
-
+        
         let cat = String(Project.cat.split(separator: "(").first!)
 
         let CatEnum = Category(rawValue: cat)
@@ -52,7 +55,19 @@ class DetailsViewController: UIViewController {
         catLabel.layer.cornerRadius = 5
         presLabel.text = Project.time
         locLabel.text = Project.boothNumber + " " + Project.boothSide
-
+        
+        if(Project.areJudged) {
+            JudgeButton.isHidden = false
+            if(Project.hasJudged) {
+                //JudgeButton.titleLabel?.text = "Revise"
+            }
+            else {
+                //JudgeButton.titleLabel?.text = "Judge Now"
+            }
+        }
+        else {
+            JudgeButton.isHidden = true
+        }        
     }
     
     @IBAction func buttonTapped(_ sender: Any) {

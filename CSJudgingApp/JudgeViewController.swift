@@ -27,6 +27,8 @@ class JudgeViewController: UIViewController
     var PresScore : Int? = 0
     
     @IBOutlet weak var ProjTitle: UILabel!    
+    @IBOutlet weak var ResultLabel: UILabel!
+    
     
     var API: WebAPI!
     var Project: Project!
@@ -38,14 +40,30 @@ class JudgeViewController: UIViewController
         FuncButtons = [F1Button, F2Button, F3Button, F4Button, F5Button]
         DesgButtons = [D1Button, D2Button, D3Button, D4Button, D5Button]
         PresButtons = [P1Button, P2Button, P3Button, P4Button, P5Button]
-        
         let AllButtons = [FuncButtons, DesgButtons, PresButtons]
-        for bs in AllButtons
+        
+        if(Project.hasJudged)
         {
-            for b in bs! {
-                b.alpha = 0.25
-            }
+            FuncScore = Project.functionality
+            FillButtons(tap: Project.functionality, buttons: FuncButtons)
+            DesgScore = Project.design
+            FillButtons(tap: Project.design, buttons: DesgButtons)
+            PresScore = Project.presentation
+            FillButtons(tap: Project.presentation, buttons: PresButtons)
         }
+        else
+        {
+            for bs in AllButtons
+            {
+                for b in bs! {
+                    b.alpha = 0.25
+                }
+            }
+        }                    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        ResultLabel.isHidden = true
     }
     
     func FillButtons(tap: Int, buttons: [UIButton])
@@ -126,9 +144,27 @@ class JudgeViewController: UIViewController
     
     @IBAction func SubmitJudgement(_ sender: Any) {
         
-        API.SubmitJudgement(ProjectId: Project.id, FuncScore: FuncScore!,
-                            DesgScore: DesgScore!, PresScore: PresScore!)
+        ResultLabel.isHidden = false
+        ResultLabel.text = "Submitting..."
+        ResultLabel.backgroundColor = UIColor.clear
         
+        API.SubmitJudgement(ProjectId: Project.id, FuncScore: FuncScore!,
+                            DesgScore: DesgScore!, PresScore: PresScore!,
+            completion: showResult)
+    }
+    
+    func showResult(result: Bool)
+    {
+        if(result)
+        {
+            ResultLabel.text = "Successful Submission"
+            ResultLabel.backgroundColor = HexStringToUIColor(hex: "50C878")
+        }
+        else
+        {
+            ResultLabel.text = "Failed Submission"
+            ResultLabel.backgroundColor = HexStringToUIColor(hex: "AD2710")
+        }
     }
     
 }
