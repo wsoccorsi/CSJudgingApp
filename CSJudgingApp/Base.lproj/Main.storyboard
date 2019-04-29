@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="2316" y="313"/>
         </scene>
-        <!--QR Scan-->
+        <!--QR Scanner-->
         <scene sceneID="LEU-5A-KT4">
             <objects>
                 <viewController id="bOX-Ea-Bfc" customClass="QRScannerController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,7 +48,7 @@
                         <viewLayoutGuide key="safeArea" id="OiS-gY-BkW"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="QR Scan" image="QRIcon" id="esq-oT-8c6"/>
-                    <navigationItem key="navigationItem" id="aka-Z3-IqO"/>
+                    <navigationItem key="navigationItem" title="QR Scanner" id="aka-Z3-IqO"/>
                     <connections>
                         <outlet property="messageLabel" destination="Fxe-3f-TXa" id="mm7-Us-hKi"/>
                         <segue destination="zYk-nD-yjP" kind="show" identifier="mySegueID" id="nAS-4H-LfU"/>
@@ -1159,6 +1159,7 @@
                     <connections>
                         <outlet property="MenuLead" destination="GRX-c6-cyb" id="gL6-oi-jxx"/>
                         <outlet property="MenuWidth" destination="gtH-L7-dnc" id="eBc-ed-2Ql"/>
+                        <outlet property="NavBar" destination="hqb-4x-upQ" id="v97-UE-YYX"/>
                         <outlet property="Password" destination="gd8-LK-wih" id="WLy-Hd-zPF"/>
                         <outlet property="PasswordCenter" destination="v1b-wc-2Qh" id="YVp-C0-y3W"/>
                         <outlet property="SignInButton" destination="j0E-WN-y0S" id="nGG-qv-B8m"/>
@@ -1211,6 +1212,6 @@
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Im-29-DJB"/>
+        <segue reference="nAS-4H-LfU"/>
     </inferredMetricsTieBreakers>
 </document>

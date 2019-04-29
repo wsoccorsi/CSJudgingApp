@@ -28,6 +28,8 @@ class HomeScreenViewController : UIViewController {
     @IBOutlet var SignInCenter: NSLayoutConstraint!
     @IBOutlet var SignOutCenter: NSLayoutConstraint!
     
+    @IBOutlet weak var NavBar: UINavigationItem!
+    
     var InitialStatus : String = "NotLoggedIn"
         
     override func viewDidLoad()
@@ -40,7 +42,8 @@ class HomeScreenViewController : UIViewController {
         MenuWidth.constant = UIScreen.main.bounds.width
         MenuLead.constant = UIScreen.main.bounds.width * -1
         
-        Status.text = ""
+        Status.text = "Sign In!"
+        Status.textColor = UIColor.white
         //Status.lineBreakMode = .byWordWrapping
         Username.isHidden = false
         Password.isHidden = false
@@ -122,37 +125,31 @@ class HomeScreenViewController : UIViewController {
     func updateMenuView(LogInStatus: String)
     {
         if(LogInStatus == "SuccessfulLogIn") {
-            Status.text = "Logged In As\n" + API.Username!            
-            //UsernameCenter.constant = 1000
+            Status.text = "Logged In As\n" + API.Username!
+            Status.textColor = HexStringToUIColor(hex: "50C878")
             Username.isHidden = true
-            //PasswordCenter.constant = 1000
             Password.isHidden = true
-            //SignInCenter.constant = 1000
             SignInButton.isHidden = true
-            //SignOutCenter.constant = 0
             SignOutButton.isHidden = false
+            NavBar.title = "Computer Science Fair"
         }
         if(LogInStatus == "NotLoggedIn") {
-            Status.text = ""
-            //UsernameCenter.constant = 0
+            Status.text = "Sign In!"
+            Status.textColor = UIColor.white
             Username.isHidden = false
-            //PasswordCenter.constant = 0
             Password.isHidden = false
-            //SignInCenter.constant = 0
             SignInButton.isHidden = false
-            //SignOutCenter.constant = 1000
             SignOutButton.isHidden = true
+            NavBar.title = "Sign In"
         }
         if(LogInStatus == "FailedLogIn") {
             Status.text = "Incorrect Username or Password"
-            //UsernameCenter.constant = 0
+            Status.textColor = HexStringToUIColor(hex: "AD2710")
             Username.isHidden = false
-            //PasswordCenter.constant = 0
             Password.isHidden = false
-            //SignInCenter.constant = 0
             SignInButton.isHidden = false
-            //SignOutCenter.constant = 1000
             SignOutButton.isHidden = true
+            NavBar.title = "Sign In"
         }
         
     }
