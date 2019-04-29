@@ -71,9 +71,15 @@ class ProjectsViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if (ProjectStore.Projects.count == 0)
+        if (ProjectStore.Projects.count == 0 && !API.isLoggedIn)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NotLoggedInCell", for: indexPath) as! CustomCell
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none;
+            return cell
+        }
+        if (ProjectStore.Projects.count == 0 && API.isLoggedIn)
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as! CustomCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none;
             return cell
         }

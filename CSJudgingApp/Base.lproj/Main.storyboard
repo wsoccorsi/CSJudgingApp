@@ -775,6 +775,32 @@
                                     <outlet property="nameLabel" destination="m1B-dA-qZ8" id="RhI-jz-ARQ"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="d08-YF-rMW" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="681" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d08-YF-rMW" id="0Nq-Xh-Xjc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Loading Projects . . ." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUR-zD-vP6">
+                                            <rect key="frame" x="28" y="11.000000000000002" width="358" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NUR-zD-vP6" firstAttribute="top" secondItem="0Nq-Xh-Xjc" secondAttribute="topMargin" id="CaY-hJ-m8d"/>
+                                        <constraint firstItem="NUR-zD-vP6" firstAttribute="leading" secondItem="0Nq-Xh-Xjc" secondAttribute="leadingMargin" constant="8" id="Dpu-lg-Eke"/>
+                                        <constraint firstItem="NUR-zD-vP6" firstAttribute="centerX" secondItem="0Nq-Xh-Xjc" secondAttribute="centerX" id="Xgp-XU-DoB"/>
+                                        <constraint firstItem="NUR-zD-vP6" firstAttribute="centerY" secondItem="0Nq-Xh-Xjc" secondAttribute="centerY" id="iul-0I-id9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="NUR-zD-vP6" id="hGI-ov-fJh"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="bGa-Og-Rzl" id="rA1-TW-JlD"/>
@@ -995,6 +1021,32 @@
                                     <outlet property="nameLabel" destination="4tD-Ji-NJk" id="tv3-FX-IDL"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="sd4-ed-KfP" customClass="CustomCell" customModule="CSJudgingApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="681" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sd4-ed-KfP" id="sfh-VW-6DC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Loading Projects . . ." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqy-jk-GSU">
+                                            <rect key="frame" x="28" y="11.000000000000002" width="358" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qqy-jk-GSU" firstAttribute="top" secondItem="sfh-VW-6DC" secondAttribute="topMargin" id="1d0-XE-gyu"/>
+                                        <constraint firstItem="qqy-jk-GSU" firstAttribute="centerY" secondItem="sfh-VW-6DC" secondAttribute="centerY" id="Pho-lG-hX5"/>
+                                        <constraint firstItem="qqy-jk-GSU" firstAttribute="centerX" secondItem="sfh-VW-6DC" secondAttribute="centerX" id="VDJ-2R-UZw"/>
+                                        <constraint firstItem="qqy-jk-GSU" firstAttribute="leading" secondItem="sfh-VW-6DC" secondAttribute="leadingMargin" constant="8" id="X9a-Qe-5CE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="qqy-jk-GSU" id="EtU-mz-RpE"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="pRF-Ss-5jc" id="nvx-FQ-7to"/>
@@ -1054,7 +1106,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2rj-fF-v75">
-                                <rect key="frame" x="0.0" y="88" width="375" height="725"/>
+                                <rect key="frame" x="-375" y="88" width="375" height="725"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lpT-zV-FtB">
                                         <rect key="frame" x="100" y="100" width="175" height="30"/>
@@ -1087,7 +1139,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0E-WN-y0S">
-                                        <rect key="frame" x="157.66666666666666" y="210" width="60" height="36"/>
+                                        <rect key="frame" x="157.33333333333334" y="210" width="60" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Ppr-Ud-D6a"/>
                                         </constraints>
@@ -1108,7 +1160,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVh-cT-8NF">
-                                        <rect key="frame" x="149.66666666666666" y="210" width="76" height="36"/>
+                                        <rect key="frame" x="149.33333333333334" y="210" width="76" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Sign Out"/>
                                         <connections>
@@ -1137,7 +1189,7 @@
                             <constraint firstItem="2rj-fF-v75" firstAttribute="top" secondItem="Hh9-GH-Oad" secondAttribute="top" id="C0R-Vp-Dr3"/>
                             <constraint firstItem="WWK-LF-1BZ" firstAttribute="top" secondItem="Hh9-GH-Oad" secondAttribute="top" id="Crf-xx-R4S"/>
                             <constraint firstItem="OcL-bf-UxN" firstAttribute="leading" secondItem="xNf-uZ-naU" secondAttribute="leading" constant="8" id="DL5-Mv-s6k"/>
-                            <constraint firstItem="2rj-fF-v75" firstAttribute="leading" secondItem="Hh9-GH-Oad" secondAttribute="leading" id="GRX-c6-cyb"/>
+                            <constraint firstItem="2rj-fF-v75" firstAttribute="leading" secondItem="Hh9-GH-Oad" secondAttribute="leading" constant="-375" id="GRX-c6-cyb"/>
                             <constraint firstItem="2rj-fF-v75" firstAttribute="bottom" secondItem="Hh9-GH-Oad" secondAttribute="bottom" id="deP-BG-5Be"/>
                             <constraint firstItem="WWK-LF-1BZ" firstAttribute="trailing" secondItem="Hh9-GH-Oad" secondAttribute="trailing" id="eM9-EC-eg7"/>
                             <constraint firstAttribute="trailing" secondItem="OcL-bf-UxN" secondAttribute="trailing" constant="8" id="lL1-pr-aHq"/>
@@ -1212,6 +1264,6 @@
         <image name="play" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nAS-4H-LfU"/>
+        <segue reference="b7d-Q6-Xjr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -46,7 +46,9 @@ class HomeScreenViewController : UIViewController {
         Status.textColor = UIColor.white
         //Status.lineBreakMode = .byWordWrapping
         Username.isHidden = false
+        Username.text = "william.slocum@uvm.edu"
         Password.isHidden = false
+        Password.text = "Password12345Password"
         SignInButton.isHidden = false
         SignOutButton.isHidden = true
         
@@ -83,6 +85,7 @@ class HomeScreenViewController : UIViewController {
                 }
                 
                 name.text = HomeScreen.name
+                name.textAlignment = .left
                 
                 let deeescriptiontemp = HomeScreen.deescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
                 deeescription.text = deeescriptiontemp
@@ -90,12 +93,18 @@ class HomeScreenViewController : UIViewController {
                 date.text = HomeScreen.date
             
             case let .Failure(error):
+                imgView.image = nil
+                name.text = "Tap the Top Left Corner to Sign In"
+                name.textAlignment = .center
+                deeescription.text = ""
+                date.text = ""
                 print("Error Fetching HomeScreen: \(error)")
         }        
     }
     
     @IBAction func SignOutTapped(_ sender: Any) {
         API.LogOut()
+        self.updateView(homeScreenResult: .Failure(NSError(domain:"", code:400, userInfo:nil)))
         self.updateMenuView(LogInStatus: "NotLoggedIn")
     }
     
@@ -116,10 +125,8 @@ class HomeScreenViewController : UIViewController {
         UIView.animate(withDuration: 0.4, animations: {self.view.layoutIfNeeded()})
     }
     
-    @IBAction func submit(_ sender: Any) {        
-        
+    @IBAction func submit(_ sender: Any) {
         API.LogIn(username: Username.text!, password: Password.text!, completion: updateMenuView)
-        //self.updateMenuView()
     }
     
     func updateMenuView(LogInStatus: String)
@@ -131,7 +138,7 @@ class HomeScreenViewController : UIViewController {
             Password.isHidden = true
             SignInButton.isHidden = true
             SignOutButton.isHidden = false
-            NavBar.title = "Computer Science Fair"
+            API.FetchHomeScreenFromWeb(completion: updateView)
         }
         if(LogInStatus == "NotLoggedIn") {
             Status.text = "Sign In!"
@@ -140,7 +147,6 @@ class HomeScreenViewController : UIViewController {
             Password.isHidden = false
             SignInButton.isHidden = false
             SignOutButton.isHidden = true
-            NavBar.title = "Sign In"
         }
         if(LogInStatus == "FailedLogIn") {
             Status.text = "Incorrect Username or Password"
@@ -149,9 +155,7 @@ class HomeScreenViewController : UIViewController {
             Password.isHidden = false
             SignInButton.isHidden = false
             SignOutButton.isHidden = true
-            NavBar.title = "Sign In"
         }
-        
     }
     
     func InitializeStatus(LogInStatus: String)
