@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Clears Core Data, Uncomment to Force User Log-In
+        //Data.cleanEntity()
+        
         API.Data = Data
 
         let BarColor = HexStringToUIColor(hex:"23252B")
