@@ -135,7 +135,7 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
 //            let s = String(data: data, encoding: String.Encoding.utf8) as String!
 //            print(s)
             let JSONObject = try JSONSerialization.jsonObject(with: data, options:.allowFragments)
-            print("\n\n\n\n\n\n\n\n22\n\n\n\n\n\\n")
+
             guard
                 let Proj = JSONObject as? [AnyHashable:Any]
                 else
@@ -158,16 +158,32 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
                 let areJudge = Proj["current_user_judging"] as? Bool
                 let hasJudged = Proj["has_judged"] as? Bool
                 if (areJudge == true){
-                let Criteria = Judge?[1] as! String
-                    print("Judge Score: " + Criteria);
+                    var Criteria = Judge?[0] as? [AnyHashable:Any]
+                    var temp = Criteria?["judge_score"] as? String
+                    if let temp2 = temp
+                    {
+                        Functionality = (temp2 as NSString).integerValue
+                        //print(temp2)
+                    }
+                    Criteria = Judge?[1] as? [AnyHashable:Any]
+                    temp = Criteria?["judge_score"] as? String
+                    if let temp2 = temp
+                    {
+                        Design = (temp2 as NSString).integerValue
+                        //print(temp2)
+                    }
+                    Criteria = Judge?[2] as? [AnyHashable:Any]
+                    temp = Criteria?["judge_score"] as? String
+                    if let temp2 = temp
+                    {
+                        Presentation = (temp2 as NSString).integerValue
+                        //print(temp2)
+                    }
+                    
                 }
-
-                
-            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: [Judge!], areJudged: areJudge!, hasJudged: hasJudged!, functionality: Functionality, design: Design, presentation: Presentation)
-                
             
+            let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: Judge!, areJudged: areJudge!, hasJudged: hasJudged!, functionality: Functionality, design: Design, presentation: Presentation)
             
-            print("\n\n\n\n\n\n\n\n0\n\n\n\n\n\\n")
             return .Success([NewProject])
         }
         catch let Error
