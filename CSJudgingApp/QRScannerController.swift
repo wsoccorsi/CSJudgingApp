@@ -106,6 +106,7 @@ class QRScannerController: UIViewController {
     
     func launchApp(decodedURL: String) {
         //captureSession.startRunning()
+        if API.isLoggedIn{
         if presentedViewController != nil {
             return
         }
@@ -115,7 +116,7 @@ class QRScannerController: UIViewController {
             print(decodedURL)
             //let API = WebAPI()
             API.GetQRProject(completion: segueTableView,link:decodedURL)
-        
+        }
             
             
         //}
