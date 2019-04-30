@@ -82,7 +82,7 @@
         <scene sceneID="vg0-js-KRm">
             <objects>
                 <viewController id="zYk-nD-yjP" customClass="DetailsViewController" customModule="CSJudgingApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="jkt-7C-33Z">
+                    <view key="view" contentMode="scaleToFill" id="jkt-7C-33Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1202,7 +1202,7 @@
                         <color key="badgeColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Computer Science Fair" id="hqb-4x-upQ">
-                        <barButtonItem key="leftBarButtonItem" title="Login" image="Menu" id="VzO-YU-w0c">
+                        <barButtonItem key="leftBarButtonItem" title="Login" image="Star" id="VzO-YU-w0c">
                             <connections>
                                 <action selector="buttonTapped:" destination="xjr-Lq-h4M" id="IPE-f4-CU6"/>
                             </connections>
@@ -1255,9 +1255,9 @@
     </scenes>
     <resources>
         <image name="List" width="30" height="30"/>
-        <image name="Menu" width="30" height="30"/>
         <image name="QRIcon" width="30" height="30"/>
         <image name="Shop" width="30" height="30"/>
+        <image name="Star" width="60" height="60"/>
         <image name="StarIcon" width="491.51998901367188" height="478.07998657226562"/>
         <image name="courses" width="25" height="26"/>
         <image name="location" width="27" height="29"/>
