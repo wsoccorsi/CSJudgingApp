@@ -129,6 +129,8 @@ class HomeScreenViewController : UIViewController {
     }
     
     @IBAction func submit(_ sender: Any) {
+        Username.resignFirstResponder()
+        Password.resignFirstResponder()
         API.LogIn(username: Username.text!, password: Password.text!, completion: updateMenuView)
     }
     
@@ -153,7 +155,7 @@ class HomeScreenViewController : UIViewController {
         }
         if(LogInStatus == "FailedLogIn") {
             Status.text = "Incorrect Username or Password"
-            Status.textColor = HexStringToUIColor(hex: "AD2710")
+            Status.textColor = HexStringToUIColor(hex: "FF2600")
             Username.isHidden = false
             Password.isHidden = false
             SignInButton.isHidden = false

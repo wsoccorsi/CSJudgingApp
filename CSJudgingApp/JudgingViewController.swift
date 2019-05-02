@@ -36,7 +36,15 @@ class JudgingViewController: UITableViewController {
         {
             case let .Success(projects):
             
-                let sorted_projects = projects.sorted { !$0.hasJudged && $1.hasJudged }
+                let sorted_projects = projects.sorted
+                {
+                    if $0.hasJudged == true  && $1.hasJudged == false  { return false }
+                    if $0.hasJudged == false && $1.hasJudged == true   { return true }
+                    if $0.hasJudged == $1.hasJudged { return $0.name.localizedCompare($1.name)
+                                                             == .orderedAscending }
+                    return true
+                }
+                
                 ProjectStore.Projects = sorted_projects
             
                 self.tableView.reloadData()

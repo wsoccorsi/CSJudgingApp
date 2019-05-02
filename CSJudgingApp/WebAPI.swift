@@ -180,9 +180,12 @@ class WebAPI {
         
         guard
             let json = data
-            else {
+            else
+            {
+                //print("ProcessSingleRequest: Invalid URL")
+                //let _error = NSError(domain:"", code:400, userInfo:nil)
                 return .Failure(error!)
-        }
+            }
         
         return ExtractProject(from: json)
     }
@@ -231,7 +234,7 @@ class WebAPI {
         else
         {
             print("FetchAllProjectsFromWeb: No Bearer Token")
-            let error = NSError(domain:"", code:400, userInfo:nil)
+            let error = NSError(domain:"", code:401, userInfo:nil)
             completion(.Failure(error))
         }
     }
@@ -255,7 +258,7 @@ class WebAPI {
                 let result = self.ProcessRequest(data: data, error: error)
                 
                 OperationQueue.main.addOperation
-                    {
+                {
                         
                         completion(result)
                 }
@@ -266,7 +269,7 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
-            let error = NSError(domain:"", code:400, userInfo:nil)
+            let error = NSError(domain:"", code:401, userInfo:nil)
             completion(.Failure(error))
         }
     }
@@ -287,11 +290,11 @@ class WebAPI {
             {
                 (data, response, error) -> Void in
                 let result = self.ProcessSingleRequest(data: data, error: error)
-                
+                print("\n\n\n\n\(result)\n\n\n\n")
                 OperationQueue.main.addOperation
-                    {
+                {
                         
-                        completion(result)
+                    completion(result)
                 }
             })
             
@@ -300,7 +303,7 @@ class WebAPI {
         else
         {
             print("FetchMyProjectsFromWeb: No Bearer Token")
-            let error = NSError(domain:"", code:400, userInfo:nil)
+            let error = NSError(domain:"", code:401, userInfo:nil)
             completion(.Failure(error))
         }
     }
@@ -325,7 +328,7 @@ class WebAPI {
                 let result = self.ProcessHomeScreenRequest(data: data, error: error)
                 
                 OperationQueue.main.addOperation
-                    {
+                {
                         
                         completion(result)
                 }
@@ -336,7 +339,7 @@ class WebAPI {
         else
         {
             print("FetchHomeScreenFromWeb: No Bearer Token")
-            let error = NSError(domain:"", code:400, userInfo:nil)
+            let error = NSError(domain:"", code:401, userInfo:nil)
             completion(.Failure(error))
         }
     }

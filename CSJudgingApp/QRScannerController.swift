@@ -8,6 +8,7 @@ class QRScannerController: UIViewController {
     
     @IBOutlet var messageLabel:UILabel!
     @IBOutlet var topbar: UIView!
+    @IBOutlet var FeedbackLabel: UILabel!
     
     var API: WebAPI!
     
@@ -86,6 +87,9 @@ class QRScannerController: UIViewController {
         // Moves the access request to the front of the view
         view.bringSubviewToFront(messageLabel)
         
+        FeedbackLabel.isHidden = true
+        view.bringSubviewToFront(FeedbackLabel)
+        
         // QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
@@ -94,6 +98,13 @@ class QRScannerController: UIViewController {
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        captureSession.startRunning()
+        if (API.isLoggedIn) {
+            FeedbackLabel.isHidden = true
         }
     }
     
@@ -106,17 +117,16 @@ class QRScannerController: UIViewController {
     
     func launchApp(decodedURL: String) {
         //captureSession.startRunning()
-        if API.isLoggedIn{
-        if presentedViewController != nil {
+        if presentedViewController != nil
+        {
             return
         }
         captureSession.stopRunning()
         //here is where URL is stored
        // if let url = URL(string: decodedURL) {
-            print(decodedURL)
+        print(decodedURL)
             //let API = WebAPI()
-            API.GetQRProject(completion: segueTableView,link:decodedURL)
-        }
+        API.GetQRProject(completion: segueTableView,link:decodedURL)
             
             
         //}
@@ -134,6 +144,10 @@ class QRScannerController: UIViewController {
         {
         case let .Success(projects):
             
+            captureSession.stopRunning()
+            
+            FeedbackLabel.isHidden = true
+            
             ProjectStore.Projects = projects
             
             performSegue(withIdentifier: "mySegueID", sender: self)
@@ -141,7 +155,20 @@ class QRScannerController: UIViewController {
             
         case let .Failure(error):
             
-            print("Error Fetching Projects: \(error)")
+            let errorCode = error._code
+            
+            if(errorCode == 3840) {
+                print("\(errorCode): Invalid Web Request")
+                FeedbackLabel.text = "Invalid QR Code"
+                FeedbackLabel.isHidden = false
+            }
+            if(errorCode == 401) {
+                print("\(errorCode): Invalid Bearer Token")
+                FeedbackLabel.text = "Sign In To Use The Scanner"
+                FeedbackLabel.isHidden = false
+            }
+            
+            print("\(error)")
         }
     }
     

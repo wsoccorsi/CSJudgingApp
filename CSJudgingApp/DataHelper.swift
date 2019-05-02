@@ -188,7 +188,6 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
         }
         catch let Error
         {
-            print("\n\n\n\n\n\n\n\n1\n\n\n\n\n\\n")
             return .Failure(Error)
         }
     }

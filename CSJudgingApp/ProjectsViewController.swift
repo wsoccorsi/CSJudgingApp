@@ -47,7 +47,9 @@ class ProjectsViewController: UITableViewController
         {
             case let .Success(projects):
                 
-                ProjectStore.Projects = projects
+                let sorted_projects = projects.sorted { return $0.name.localizedCompare($1.name)
+                                                               == .orderedAscending }
+                ProjectStore.Projects = sorted_projects
                 
                 self.tableView.reloadData()
             
