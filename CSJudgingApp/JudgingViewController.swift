@@ -36,7 +36,8 @@ class JudgingViewController: UITableViewController {
         {
             case let .Success(projects):
             
-                ProjectStore.Projects = projects
+                let sorted_projects = projects.sorted { !$0.hasJudged && $1.hasJudged }
+                ProjectStore.Projects = sorted_projects
             
                 self.tableView.reloadData()
             
