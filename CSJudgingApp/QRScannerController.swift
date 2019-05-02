@@ -34,7 +34,6 @@ class QRScannerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Checks for wide or back facing cameras
         var deviceDiscoverySession: AVCaptureDevice.DiscoverySession
         
@@ -116,30 +115,19 @@ class QRScannerController: UIViewController {
     //Helper methods
     
     func launchApp(decodedURL: String) {
-        //captureSession.startRunning()
+        
         if presentedViewController != nil
         {
             return
         }
+        
         captureSession.stopRunning()
-        //here is where URL is stored
-       // if let url = URL(string: decodedURL) {
         print(decodedURL)
-            //let API = WebAPI()
         API.GetQRProject(completion: segueTableView,link:decodedURL)
-            
-            
-        //}
-        
-        
-        
     }
-    func back(sender: UIBarButtonItem) {
-        
-        //captureSession.startRunning()
-    }
+    
     func segueTableView(projectsResult: ProjectsResult) {
-        captureSession.startRunning()
+        
         switch projectsResult
         {
         case let .Success(projects):
@@ -151,6 +139,8 @@ class QRScannerController: UIViewController {
             ProjectStore.Projects = projects
             
             performSegue(withIdentifier: "mySegueID", sender: self)
+            captureSession.startRunning()
+            
            
             
         case let .Failure(error):
