@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (Data.userDataExists()) {
             
+            // Update Bearer Token If It Is Expired, Unimplemented
             if (false) { // Data.isTokenOld()
                 API.LogIn(username: Data.getUsernameFromCore(), password: Data.getPasswordFromCore(), completion: HomeScreenController.InitializeStatus)
             }
