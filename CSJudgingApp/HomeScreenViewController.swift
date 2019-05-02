@@ -56,6 +56,9 @@ class HomeScreenViewController : UIViewController {
         Password.autocorrectionType = UITextAutocorrectionType.no
         Password.isSecureTextEntry = true
         
+        name.numberOfLines = 0
+        name.lineBreakMode = .byWordWrapping        
+        
         updateMenuView(LogInStatus: InitialStatus)
         
         API.FetchHomeScreenFromWeb(completion: updateView)
@@ -95,7 +98,7 @@ class HomeScreenViewController : UIViewController {
             case let .Failure(error):
                 imgView.image = nil
                 name.text = "Tap the Top Left Corner to Sign In"
-                name.textAlignment = .center
+                name.textAlignment = .center 
                 deeescription.text = ""
                 date.text = ""
                 print("Error Fetching HomeScreen: \(error)")
