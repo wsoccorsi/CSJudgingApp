@@ -34,17 +34,14 @@ class HomeScreenViewController : UIViewController {
         
     override func viewDidLoad()
     {
-        super.viewDidLoad()        
-        
-        //Username.text = "william.slocum@uvm.edu"
-        //Password.text = "Password12345Password"
+        super.viewDidLoad()
         
         MenuWidth.constant = UIScreen.main.bounds.width
         MenuLead.constant = UIScreen.main.bounds.width * -1
         
         Status.text = "Sign In!"
         Status.textColor = UIColor.white
-        //Status.lineBreakMode = .byWordWrapping
+        
         Username.isHidden = false
         Username.text = "william.slocum@uvm.edu"
         Password.isHidden = false
@@ -136,7 +133,8 @@ class HomeScreenViewController : UIViewController {
     
     func updateMenuView(LogInStatus: String)
     {
-        if(LogInStatus == "SuccessfulLogIn") {
+        if(LogInStatus == "SuccessfulLogIn")
+        {
             Status.text = "Logged In As\n" + API.Username!
             Status.textColor = HexStringToUIColor(hex: "50C878")
             Username.isHidden = true
@@ -145,7 +143,8 @@ class HomeScreenViewController : UIViewController {
             SignOutButton.isHidden = false
             API.FetchHomeScreenFromWeb(completion: updateView)
         }
-        if(LogInStatus == "NotLoggedIn") {
+        if(LogInStatus == "NotLoggedIn")
+        {
             Status.text = "Sign In!"
             Status.textColor = UIColor.white
             Username.isHidden = false
@@ -153,7 +152,8 @@ class HomeScreenViewController : UIViewController {
             SignInButton.isHidden = false
             SignOutButton.isHidden = true
         }
-        if(LogInStatus == "FailedLogIn") {
+        if(LogInStatus == "FailedLogIn")
+        {
             Status.text = "Incorrect Username or Password"
             Status.textColor = HexStringToUIColor(hex: "FF2600")
             Username.isHidden = false
@@ -163,8 +163,7 @@ class HomeScreenViewController : UIViewController {
         }
     }
     
-    func InitializeStatus(LogInStatus: String)
-    {
+    func InitializeStatus(LogInStatus: String) {
         InitialStatus = LogInStatus
     }
 }

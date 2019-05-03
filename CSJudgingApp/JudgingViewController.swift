@@ -59,8 +59,7 @@ class JudgingViewController: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (ProjectStore.Projects.count == 0)
-        {
+        if (ProjectStore.Projects.count == 0) {
             return 1
         }
         

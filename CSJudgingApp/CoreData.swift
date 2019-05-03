@@ -106,7 +106,6 @@ class CoreData {
         NewUser.setValue(Password, forKey: "password")
         NewUser.setValue(Token, forKey: "token")
         NewUser.setValue(Date, forKey: "token_date")
-        //NewUser.setValue(Password.text!, forKey: "token_date")
         
         do {
             try Context.save()
@@ -125,14 +124,12 @@ class CoreData {
         do {
             let Entities = try Context.fetch(UserRequest) as! [NSManagedObject]
             
-            for e in Entities
-            {
+            for e in Entities {
                 Context.delete(e)
             }
             
             // Save Changes
             try Context.save()
-            
         }
         catch {
             print("Error Cleaning Entity")

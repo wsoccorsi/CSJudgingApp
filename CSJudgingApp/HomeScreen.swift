@@ -9,7 +9,7 @@ class HomeScreen : NSObject
 {
     var id : Int!
     var name : String!
-    var deescription : String!   // description is a feild in NSobject, cannot use as a variable as a result
+    var deescription : String!
     var year : String!
     var is_current : Bool!
     var featured_img_url : String!

@@ -4,19 +4,22 @@ enum WebError: Error {
     case InvalidJSON
 }
 
-enum EndPoint: String {
+enum EndPoint: String
+{
     case allProjects = "cs-judge/v1/projects/year/2018"
     case  myProjects = "cs-judge/v1/users/my-judging-projects/current"
     case    homePage = "cs-judge/v1/fairs/current"
     case submitJudge = "cs-judge/v1/users/submit-judgement"
 }
 
-enum TokenResult {
+enum TokenResult
+{
     case Success(String)
     case Failure(Error)
 }
 
-class WebAPI {
+class WebAPI
+{
     
     //=====================================================================
     
@@ -51,7 +54,8 @@ class WebAPI {
     
     //=====================================================================
     
-    private func CreateURL(endpoint: EndPoint, parameters: [String:String]?) -> URL {
+    private func CreateURL(endpoint: EndPoint, parameters: [String:String]?) -> URL
+    {
         
         let url = BaseURL + endpoint.rawValue
         
@@ -62,7 +66,8 @@ class WebAPI {
     
     //=====================================================================
     
-    private let session: URLSession = {
+    private let session: URLSession =
+    {
         
         let config = URLSessionConfiguration.default
         
@@ -127,8 +132,7 @@ class WebAPI {
             }
             else
             {
-                OperationQueue.main.addOperation
-                {
+                OperationQueue.main.addOperation {
                     completion("FailedLogIn")
                 }
             }
@@ -136,8 +140,6 @@ class WebAPI {
         })
         
         task.resume()
-        
-    
     }
     
     public func LogOut()
@@ -151,39 +153,37 @@ class WebAPI {
     //=====================================================================
     //=====================================================================
     
-    private func ProcessTokenRequest(data: Data?, error: Error?) -> TokenResult {
+    private func ProcessTokenRequest(data: Data?, error: Error?) -> TokenResult
+    {
         
         guard
             let json = data
-            else
-        {
-            return .Failure(error!)
-        }
+            else {
+                return .Failure(error!)
+            }
         
         return ExtractToken(from: json)
     }
     
     //=====================================================================
     
-    private func ProcessRequest(data: Data?, error: Error?) -> ProjectsResult {
-        
+    private func ProcessRequest(data: Data?, error: Error?) -> ProjectsResult
+    {
         guard
             let json = data
             else {
                 return .Failure(error!)
-        }
+            }
         
         return ExtractProjects(from: json)
     }
     
-    private func ProcessSingleRequest(data: Data?, error: Error?) -> ProjectsResult {
+    private func ProcessSingleRequest(data: Data?, error: Error?) -> ProjectsResult
+    {
         
         guard
             let json = data
-            else
-            {
-                //print("ProcessSingleRequest: Invalid URL")
-                //let _error = NSError(domain:"", code:400, userInfo:nil)
+            else {
                 return .Failure(error!)
             }
         
@@ -191,13 +191,14 @@ class WebAPI {
     }
     //=====================================================================
     
-    private func ProcessHomeScreenRequest(data: Data?, error: Error?) -> HomeScreenResult {
+    private func ProcessHomeScreenRequest(data: Data?, error: Error?) -> HomeScreenResult
+    {
         
         guard
             let json = data
             else {
                 return .Failure(error!)
-        }
+            }
         
         return ExtractHomeScreen(from: json)
     }
@@ -205,11 +206,11 @@ class WebAPI {
     //=====================================================================
     //=====================================================================
     
-    func FetchAllProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
+    func FetchAllProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void)
+    {
         
         if(BearerToken != nil)
         {
-            
             let url = allProjectsURL
             
             var request = URLRequest(url: url)
@@ -222,9 +223,7 @@ class WebAPI {
                 
                 let result = self.ProcessRequest(data: data, error: error)
                 
-                OperationQueue.main.addOperation
-                    {
-                        
+                OperationQueue.main.addOperation {
                         completion(result)
                 }
             })
@@ -241,11 +240,11 @@ class WebAPI {
     
     //=====================================================================
     
-    func FetchMyProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void) {
+    func FetchMyProjectsFromWeb(completion: @escaping (ProjectsResult) -> Void)
+    {
         
         if(BearerToken != nil)
         {
-            
             let url = myProjectsURL
             var request = URLRequest(url: url)
             
@@ -257,9 +256,7 @@ class WebAPI {
                 
                 let result = self.ProcessRequest(data: data, error: error)
                 
-                OperationQueue.main.addOperation
-                {
-                        
+                OperationQueue.main.addOperation {
                         completion(result)
                 }
             })
@@ -275,7 +272,8 @@ class WebAPI {
     }
     //---------------------------------------------------------------------
     //---------------------------------------------------------------------
-    func GetQRProject(completion: @escaping (ProjectsResult) -> Void ,link:String) {
+    func GetQRProject(completion: @escaping (ProjectsResult) -> Void ,link:String)
+    {
         
         if(BearerToken != nil)
         {
@@ -290,10 +288,8 @@ class WebAPI {
             {
                 (data, response, error) -> Void in
                 let result = self.ProcessSingleRequest(data: data, error: error)
-                print("\n\n\n\n\(result)\n\n\n\n")
-                OperationQueue.main.addOperation
-                {
-                        
+                
+                OperationQueue.main.addOperation {
                     completion(result)
                 }
             })
@@ -310,7 +306,8 @@ class WebAPI {
     
     //=====================================================================
     
-    func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void) {
+    func FetchHomeScreenFromWeb(completion: @escaping (HomeScreenResult) -> Void)
+    {
         
         if(BearerToken != nil)
         {
@@ -327,9 +324,7 @@ class WebAPI {
                 
                 let result = self.ProcessHomeScreenRequest(data: data, error: error)
                 
-                OperationQueue.main.addOperation
-                {
-                        
+                OperationQueue.main.addOperation {
                         completion(result)
                 }
             })
@@ -388,8 +383,8 @@ class WebAPI {
             
             task.resume()
         }
-        else
-        {
+        else {
+            completion(false)
             print("SubmitJudgment: No Bearer Token")
         }
     }

@@ -4,7 +4,8 @@ import AVFoundation
 import Foundation
 
 
-class QRScannerController: UIViewController {
+class QRScannerController: UIViewController
+{
     
     @IBOutlet var messageLabel:UILabel!
     @IBOutlet var topbar: UIView!
@@ -32,22 +33,23 @@ class QRScannerController: UIViewController {
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
         // Checks for wide or back facing cameras
         var deviceDiscoverySession: AVCaptureDevice.DiscoverySession
         
         if AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) != nil {
-            
             deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
-            
-        } else {
-            
+        }
+        else {
             deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back)
-            
         }
         
-        guard let captureDevice = deviceDiscoverySession.devices.first else {
+        guard let captureDevice = deviceDiscoverySession.devices.first
+        else
+        {
             print("Failed to get the camera device")
             return
         }
@@ -66,10 +68,8 @@ class QRScannerController: UIViewController {
             // Has to do with call back not familier
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-            //          captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             
         } catch {
-            // If any error occurs
             print(error)
             return
         }
@@ -92,7 +92,8 @@ class QRScannerController: UIViewController {
         // QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView()
         
-        if let qrCodeFrameView = qrCodeFrameView {
+        if let qrCodeFrameView = qrCodeFrameView
+        {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
@@ -100,8 +101,10 @@ class QRScannerController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         captureSession.startRunning()
+        
         if (API.isLoggedIn) {
             FeedbackLabel.isHidden = true
         }
@@ -109,64 +112,64 @@ class QRScannerController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Sanitize
     }
     
     //Helper methods
     
-    func launchApp(decodedURL: String) {
+    func launchApp(decodedURL: String)
+    {
         
-        if presentedViewController != nil
-        {
+        if presentedViewController != nil {
             return
         }
         
         captureSession.stopRunning()
         print(decodedURL)
-        API.GetQRProject(completion: segueTableView,link:decodedURL)
+        API.GetQRProject(completion: segueTableView, link:decodedURL)
     }
     
-    func segueTableView(projectsResult: ProjectsResult) {
-        
+    func segueTableView(projectsResult: ProjectsResult)
+    {
         switch projectsResult
         {
-        case let .Success(projects):
+            case let .Success(projects):
+                
+                captureSession.stopRunning()
+                
+                FeedbackLabel.isHidden = true
+                
+                ProjectStore.Projects = projects
+                
+                performSegue(withIdentifier: "mySegueID", sender: self)
             
-            captureSession.stopRunning()
-            
-            FeedbackLabel.isHidden = true
-            
-            ProjectStore.Projects = projects
-            
-            performSegue(withIdentifier: "mySegueID", sender: self)
-            captureSession.startRunning()
-            
-           
-            
-        case let .Failure(error):
-            
-            let errorCode = error._code
-            
-            if(errorCode == 3840) {
-                print("\(errorCode): Invalid Web Request")
-                FeedbackLabel.text = "Invalid QR Code"
+            case let .Failure(error):
+                
+                let errorCode = error._code
+                
+                if(errorCode == 3840)
+                {
+                    print("\(errorCode): Invalid Web Request")
+                    FeedbackLabel.text = "Invalid QR Code"
+                }
+                else if(errorCode == 401)
+                {
+                    print("\(errorCode): Invalid Bearer Token")
+                    FeedbackLabel.text = "Sign In To Use The Scanner"
+                }
+                else
+                {
+                    print("\(error)")
+                    FeedbackLabel.text = "Invalid QR Code"
+                }
                 FeedbackLabel.isHidden = false
-            }
-            if(errorCode == 401) {
-                print("\(errorCode): Invalid Bearer Token")
-                FeedbackLabel.text = "Sign In To Use The Scanner"
-                FeedbackLabel.isHidden = false
-            }
-            
-            print("\(error)")
+                captureSession.startRunning()
         }
     }
     
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "mySegueID" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "mySegueID"
+        {
             let p = ProjectStore.Projects[0]
             
             let DetailsViewController = segue.destination as! DetailsViewController
@@ -175,19 +178,20 @@ class QRScannerController: UIViewController {
             
             
         }
-        else{
+        else {
             preconditionFailure("Unexpected Segue Identifier.")
         }
-        
     }
 }
 
 
-extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
-    
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate
+{
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection)
+    {
         // Check if the metadataObjects array is not nil and it contains at least one object.
-        if metadataObjects.count == 0 {
+        if metadataObjects.count == 0
+        {
             qrCodeFrameView?.frame = CGRect.zero
             messageLabel.text = "No QR code is detected"
             return
@@ -196,16 +200,17 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         // Get the metadata object.]
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
-        if supportedCodeTypes.contains(metadataObj.type) {
+        if supportedCodeTypes.contains(metadataObj.type)
+        {
             // If the found metadata is equal to the QR code metadata (or barcode) creates the frame and runs the decode
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
-            if metadataObj.stringValue != nil {
+            if metadataObj.stringValue != nil
+            {
                 launchApp(decodedURL: metadataObj.stringValue!)
                 messageLabel.text = metadataObj.stringValue
             }
         }
-    }
-    
+    }    
 }

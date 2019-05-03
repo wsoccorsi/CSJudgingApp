@@ -9,7 +9,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var catLabel: UILabel!
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var presLabel: UILabel!
-    //@IBOutlet weak var judgeJudy: UIButton!
     
     @IBOutlet weak var JudgeButton: UIButton!
     
@@ -40,7 +39,6 @@ class DetailsViewController: UIViewController {
         Project.desc = Project.desc.replacingOccurrences(of: "&rsquo;", with: "'")
 
         nameLabel.text = Project.name
-        //descLabel.sizeToFit()
         descLabel.text = Project.desc
         devLabel.text =  Project.students.joined(separator:",")
         catLabel.text =  Project.cat
@@ -50,7 +48,8 @@ class DetailsViewController: UIViewController {
         presLabel.text = Project.time
         locLabel.text = Project.boothNumber + " " + Project.boothSide
         
-        if(Project.areJudged) {
+        if(Project.areJudged)
+        {
             JudgeButton.isHidden = false
             if(Project.hasJudged) {
                 JudgeButton.setTitle("Change Judgment", for: UIControl.State.normal)
@@ -80,8 +79,8 @@ class DetailsViewController: UIViewController {
                 JudgeViewController.Project = Project
                 JudgeViewController.API = API
             
-        default:
-            preconditionFailure("Unexpected Segue Identifier.")
+            default:
+                preconditionFailure("Unexpected Segue Identifier.")
         }
     }
     

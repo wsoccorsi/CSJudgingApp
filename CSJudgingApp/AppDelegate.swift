@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  CSJudgingApp
-//
-//  Created by William  Soccorsi on 3/17/19.
-//  Copyright © 2019 William  Soccorsi. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -67,13 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QRController.ProjectStore = QRProjectStore
         QRController.API = API
         
-        if (Data.userDataExists()) {
-            
+        if (Data.userDataExists())
+        {
             // Update Bearer Token If It Is Expired, Unimplemented
-            if (false) { // Data.isTokenOld()
+            if (false) // Data.isTokenOld()
+            {
                 API.LogIn(username: Data.getUsernameFromCore(), password: Data.getPasswordFromCore(), completion: HomeScreenController.InitializeStatus)
             }
-            else {
+            else
+            {
                 API.Username = Data.getUsernameFromCore()
                 API.Password = Data.getPasswordFromCore()
                 API.BearerToken = Data.getTokenFromCore()

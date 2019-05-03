@@ -1,4 +1,4 @@
-// https://gist.github.com/arshad/de147c42d7b3063ef7bc
+// Source: https://gist.github.com/arshad/de147c42d7b3063ef7bc
 
 import UIKit
 
@@ -6,13 +6,11 @@ func HexStringToUIColor(hex:String) -> UIColor
 {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
     
-    if (cString.hasPrefix("#"))
-    {
+    if (cString.hasPrefix("#")) {
         cString.remove(at: cString.startIndex)
     }
     
-    if ((cString.count) != 6)
-    {
+    if ((cString.count) != 6) {
         return UIColor.gray
     }
     

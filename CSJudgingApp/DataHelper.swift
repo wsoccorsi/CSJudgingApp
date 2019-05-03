@@ -9,8 +9,7 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
         guard
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let ProjectList = JSONDictionary["projects"] as? [[AnyHashable:Any]]//,
-            else
-            {
+            else {
                 return .Failure(WebError.InvalidJSON)
             }
         
@@ -36,24 +35,18 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
             if (areJudge == true){
                 var Criteria = Judge?[0] as? [AnyHashable:Any]
                 var temp = Criteria?["judge_score"] as? String
-                if let temp2 = temp
-                {
+                if let temp2 = temp {
                     Functionality = (temp2 as NSString).integerValue
-                    //print(temp2)
                 }
                 Criteria = Judge?[1] as? [AnyHashable:Any]
                 temp = Criteria?["judge_score"] as? String
-                if let temp2 = temp
-                {
+                if let temp2 = temp {
                     Design = (temp2 as NSString).integerValue
-                    //print(temp2)
                 }
                 Criteria = Judge?[2] as? [AnyHashable:Any]
                 temp = Criteria?["judge_score"] as? String
-                if let temp2 = temp
-                {
+                if let temp2 = temp {
                     Presentation = (temp2 as NSString).integerValue
-                    //print(temp2)
                 }
 
             }
@@ -65,30 +58,26 @@ func ExtractProjects(from data: Data) -> ProjectsResult {
         
         return .Success(ProjectsReturn)
     }
-    catch let Error
-    {
+    catch let Error {
         return .Failure(Error)
     }
 }
 
 func ExtractToken(from data: Data) -> TokenResult {
     
-    do
-    {
+    do {
         let JSONObject = try JSONSerialization.jsonObject(with: data, options: [])
         
         guard
             let JSONDictionary = JSONObject as? [AnyHashable:Any],
             let Token = JSONDictionary["token"] as? String//,
-            else
-            {
+            else {
                 return .Failure(WebError.InvalidJSON)
             }
         
         return .Success(Token)
     }
-    catch let Error
-    {
+    catch let Error {
         return .Failure(Error)
     }
 }
@@ -112,8 +101,7 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
             let Is_current = JSONDictionary["is_current"] as? Bool,
             let Date = JSONDictionary["date"] as? String
             
-            else
-            {
+            else {
                 return .Failure(WebError.InvalidJSON)
             }
         
@@ -122,26 +110,21 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
         return .Success(HomeScreenReturn)
     }
         
-    catch let Error
-    {
+    catch let Error {
         return .Failure(Error)
     }
 }
     
     func ExtractProject(from data: Data) -> ProjectsResult {
         
-        do
-        {
-//            let s = String(data: data, encoding: String.Encoding.utf8) as String!
-//            print(s)
+        do {
             let JSONObject = try JSONSerialization.jsonObject(with: data, options:.allowFragments)
 
             guard
                 let Proj = JSONObject as? [AnyHashable:Any]
-                else
-            {
-                return .Failure(WebError.InvalidJSON)
-            }
+                else {
+                    return .Failure(WebError.InvalidJSON)
+                }
                 var Functionality = -1;
                 var Design = -1;
                 var Presentation = -1;
@@ -157,37 +140,30 @@ func ExtractHomeScreen(from data: Data) -> HomeScreenResult {
                 let Judge = Proj["judging_info"] as? [(Any)]
                 let areJudge = Proj["current_user_judging"] as? Bool
                 let hasJudged = Proj["has_judged"] as? Bool
-                if (areJudge == true){
+                if (areJudge == true)
+                {
                     var Criteria = Judge?[0] as? [AnyHashable:Any]
                     var temp = Criteria?["judge_score"] as? String
-                    if let temp2 = temp
-                    {
+                    if let temp2 = temp {
                         Functionality = (temp2 as NSString).integerValue
-                        //print(temp2)
                     }
                     Criteria = Judge?[1] as? [AnyHashable:Any]
                     temp = Criteria?["judge_score"] as? String
-                    if let temp2 = temp
-                    {
+                    if let temp2 = temp {
                         Design = (temp2 as NSString).integerValue
-                        //print(temp2)
                     }
                     Criteria = Judge?[2] as? [AnyHashable:Any]
                     temp = Criteria?["judge_score"] as? String
-                    if let temp2 = temp
-                    {
+                    if let temp2 = temp {
                         Presentation = (temp2 as NSString).integerValue
-                        //print(temp2)
                     }
-                    
                 }
             
             let NewProject = Project(name: Name!, id: Id!, desc: Desc!, cat: Cat!, booth: Booth!, time: Time!, students: [Student!], courses: [Courses!], boothSide: Side!, judgingInfo: Judge!, areJudged: areJudge!, hasJudged: hasJudged!, functionality: Functionality, design: Design, presentation: Presentation)
             
             return .Success([NewProject])
         }
-        catch let Error
-        {
+        catch let Error {
             return .Failure(Error)
         }
     }

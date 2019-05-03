@@ -1,6 +1,7 @@
 import UIKit
 
-enum Category: String {
+enum Category: String
+{
     case BegProg = "Beginner Programming "
     case IntProj = "Intermediate Projects "
     case AdvProj = "Advanced Projects "
@@ -36,7 +37,8 @@ class ProjectsViewController: UITableViewController
         API.FetchAllProjectsFromWeb(completion: updateTableView)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         tableView.reloadData()
         API.FetchAllProjectsFromWeb(completion: updateTableView)
     }
@@ -62,9 +64,9 @@ class ProjectsViewController: UITableViewController
     }
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (ProjectStore.Projects.count == 0)
-        {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if (ProjectStore.Projects.count == 0) {
             return 1
         }
         
